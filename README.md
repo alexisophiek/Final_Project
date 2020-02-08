@@ -1,7 +1,7 @@
 # Final_Project
 Data Analytics Boot Camp Final Project, Winter 2020
 
-##### Start an Environment for this project called finalproject.  Be sure to work in this as we go, so we can keep track of our requirements.
+##### Start an Environment for this project called finalproject.  Be sure to work in this as we go, so we can keep track of our requirements. * should we have a text environment when we start working with nltk or our chosen sentiment library?
 
 
 ## Step One:
