@@ -28,3 +28,8 @@ DB Connection
 
  <!-- ## Step Three:
  Build Framework for WebApp -->
+
+
+* Using Postman to test
+* Had to join Twitter Developer Labs and enable Tweets/Users requests
+* Got a Bearer Token - We are officially in OAuth2.0
