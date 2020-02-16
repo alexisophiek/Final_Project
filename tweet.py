@@ -1,23 +1,15 @@
-import twitter
 from config import *
-import os
-import json
+import tweepy
 
-api = twitter.Api(consumer_key= consumer_key,
-                  consumer_secret=consumer_secret,
-                  access_token_key=access_token_key,
-                  access_token_secret=access_token_secret,
-                  input_encoding=encoding)
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_token_secret)
 
-# def main():
-#     with open('output.txt', 'a') as f:
-#         api.GetStreamFilter will return a generator that yields one status
-#         message (i.e., Tweet) at a time as a JSON dictionary.
-#         for line in api.GetStreamFilter(track=USERS, languages=LANGUAGES):
-#             f.write(json.dumps(line))
-#             f.write('\n')
+api = tweepy.API(auth)
+
+public_tweets = api.home_timeline()
+for tweet in public_tweets:
+    print(tweet.text)
 
 
-# if __name__ == '__main__':
-#     main()
+
 
