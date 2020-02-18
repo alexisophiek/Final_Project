@@ -11,22 +11,16 @@ try:
 except:
     print("Error during authentication")
 
-# #override tweepy.StreamListener to add logic to on_status
+
 class MyStreamListener(tweepy.StreamListener):
     def on_status(self, status):
         print(status.text)
+        #Don't know why it doesnt print out coordinates
+        print(status.coordinates)
 
 
 myStreamListener = MyStreamListener()
+
 myStream = tweepy.Stream(auth=api.auth, listener=myStreamListener)
 
-
-def main():
-    with open('output.json', 'a') as f:
-        for line in myStream.filter(track=['election2020'], languages='en'):
-            f.write(json.dumps(line))
-            f.write('\n')
-
-
-if __name__ == '__main__':
-    main()
+myStream.filter(track=['election2020'])
