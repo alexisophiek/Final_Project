@@ -21,8 +21,6 @@ We will be using the Twitter API to pull Twitter Objects containing the text of 
 
 ## Project Stack
 
-(WHICH SIDE OF the DB should we peform cleaning? Which side for Classification?)
-
 * Python Twitter API calls using Tweepy.
 * Python connection with SQLAlchmey to PostgreSQL.
 * Queries from PostgreSQL.

@@ -19,13 +19,18 @@ Info We Want:
 * Tweets Request
 
     -- Place Object - NEEDED!
+
     -- Tweet Object - DONE!
 
 ## Step Two:
 
 Tweet Storing/Cleaning/Handling:
+
+Structure for cleaned DF for Database:
+date, place, user, text, metadata (everything else?)
+
 * NLTK
-* Train/Test/Run?? S
+* Train/Test/Run?
 
 DB Connection:
 
