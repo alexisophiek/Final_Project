@@ -4,12 +4,12 @@
 
 ## Twitter Sentiment Analysis
 
-_Add a sentence or two about the scope of your topic_
+Using the Twitter API, our team will make various insights to the 2020 Elections via Online Engagement, Mentions, and NLP.
 
 
 ## Rationale 
 
-_Add a paragraph or two describing why this data is interesting or relevant to you and your audience. What do you want you audience to take away. Are there questions you're trying to answer? Note: this section is likely to change as you work with your data, but it's helpful to have an idea at this point._
+We want our Audience to have fun looking at the Election of 2020 thru the lense of ML and other Analytics.  A little fun in a dark, dark world.
 
 
 ## Data Sets
@@ -24,13 +24,14 @@ We will be using the Twitter API to pull Twitter Objects containing the text of 
 (WHICH SIDE OF the DB should we peform cleaning? Which side for Classification?)
 
 * Python Twitter API calls using Tweepy.
-* NLTK? for text cleaning and processing.
 * Python connection with SQLAlchmey to PostgreSQL.
 * Queries from PostgreSQL.
-* ML: Classification
-* Heat Map with base categories?
-* Other Visualisations: D3 bar graph of current Moods, WordCloud of most used word, and D3 line graph to show mood change over time (with dropdown to specific dates?)
-
+* NLTK/NLP for text cleaning and processing.
+* NRC for Quick Sentiment Analysis
+* ML: Test Models on Number of Interactions per Tweet (breakdown)
+* ML: Clustering Test after NLP Processing
+* Heat Map with base categories (Long Game Goal)
+* Other Visualisations: D3 bar graph of current Moods, WordCloud of most used word, Leader Board of Candidates using TextBlob, and D3 line graph to show mood change over time (with dropdown to specific dates?)
 
 
 ## Project Goals
@@ -44,7 +45,7 @@ WE WILL SURVIVE.
 We will make use of branches and merging branches during our work. Our group will touch base on slack when stuck on something or as a pieces gets finished.  
 Organization:
 
-By Saturday 2/22:
+By EOD Saturday 2/22: Playing with Analysis, Evaluate Results and Goals
 
 By Monday 
 
