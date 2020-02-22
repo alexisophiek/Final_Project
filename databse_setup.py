@@ -4,7 +4,7 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine
 from sqlalchemy import func
-# from sqlalchemy import *
+from sqlalchemy import *
 from sqlalchemy.ext.declarative import declarative_base
 # from sqlalchemy.orm import sessionmaker
 import os
@@ -29,8 +29,13 @@ class Main (Base):
         text = Column(String)
         meta_data = Column(String)
 
+class MainJSON (Base):
+        __tablename__ = 'tweets_dump'
+        ID = Column("id", Integer, primary_key=True)
+        meta_data = Column('data', JSON)
 
 Main.__table__.create(bind = engine, checkfirst = True)
+MainJSON.__table__.create(bind = engine, checkfirst = True)
 
 Base.metadata.create_all(engine)
 
@@ -38,7 +43,7 @@ def recreate_database():
     Base.metadata.drop_all(engine)
     Base.metadata.create_all(engine)
 
-Session=sessionmaker(bind = engine)
+# Session=sessionmaker(bind = engine)
 
 print('Loading Schema...')
 print('Loading Complete.')
