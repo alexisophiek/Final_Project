@@ -4,7 +4,7 @@
 
 ## Twitter Sentiment Analysis
 
-Using the Twitter API, our team will make various insights to the 2020 Elections via Online Engagement, Mentions, and NLP.
+Using the Twitter API, our team will make various insights to the 2020 Elections via Online Engagement, Mentions, and NLP.  We will start by tracking #election2020.
 
 
 ## Rationale 
@@ -35,8 +35,7 @@ We will be using the Twitter API to pull Twitter Objects containing the text of 
 ## Project Goals
 
 A long-scroll website containing our whole project presentation, data visualizations, etc.
-
-WE WILL SURVIVE.
+The GeoTweet Object is inconsistant - Nulls will need to be dropped and then joined with Census GEOJson.  This is not necessary and so will be dropped if we run out of time.
 
 ## Work load organization
 

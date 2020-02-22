@@ -18,7 +18,7 @@ Info We Want:
 
 * Tweets Request
 
-    -- Place Object - NEEDED!
+    -- Place Object - NEEDED!   Will require that we throw out NULL objects if we do.
 
     -- Tweet Object - DONE!
 
@@ -42,7 +42,9 @@ DB Connection:
 
  ## Step Three:
  Build Framework for WebApp
+ Play with ML!
  Build Visualizations
+ -- Need to add create database not just tables to database_setup.py
 
 
  ## Set Up:
@@ -51,4 +53,6 @@ DB Connection:
 * Get a Bearer Token - We are officially in OAuth2.0!
 * Pip Install Tweepy in your environment!
 * Pip install NLTK - do we want Text Blob?
+* Google SQL Hosting!
+* NRC!
 
