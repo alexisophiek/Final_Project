@@ -1,13 +1,13 @@
 
 '''TWITTER API ACCESS INFORMATION'''
 
-consumer_key = ""
-consumer_secret = ""
+consumer_key = "btifWIAqhK6PIC3rhJRubJEMa"
+consumer_secret = "4rmAl2Bsx5z6ldw9kdPTLhM0D8SqrKboQeBaOe4uP05MR4EbCE"
 
-access_token = ""
+access_token = "1157428242-wDtHhPDTAFlkI7v165JPdSElF4iAn4FdxI1K8bB"
 access_token_secret = ""
 
-bearer_token = ""
+bearer_token = "ukmfA5MuEmWQ4oWTVvRCELA8NPbur13JRqYflEp6Hpn8C"
 
 dev_environment_label = ""
 
