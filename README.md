@@ -56,3 +56,5 @@ DB Connection:
 * Google SQL Hosting!
 * NRC!
 
+
+* cloud_sql_proxy -instances=data-class-1570673095864:us-west1:twitter-db=tcp:3306
