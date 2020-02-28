@@ -45,7 +45,25 @@ for row in tweets:
     for col in row:
         if type(col) is dict:
             tweet_list.append(col['text'])
-            followers.append(col['user']['followers_count'])
+            followers.append(col['user']['followers_count'])\
+
+#######          ALT method of load tweet_list below
+
+'''
+# SAVING A TEXT TWEET_LIST AS A CSV FOR USE LATER
+
+print(type(tweet_list))
+tweet_list_df = pd.DataFrame(tweet_list)
+tweet_list_df.to_csv('tweet_uncleaned_response.csv')
+'''
+
+'''
+# LOADING SAID CSV
+'''
+
+tweet_list = pd.read_csv('tweet_uncleaned_response.csv')
+print('type of read version ', type(tweet_list))
+
 
 '''
 # Twitter organizing
@@ -57,7 +75,6 @@ def clean_tweets(remove_list,tweet_list):
     for item in remove_list:
         tweet_list = [re.sub(item,'',tweet) for tweet in tweet_list]
     return tweet_list
-
 
 # cleaned = clean_tweets(remove_list,tweet_list)
     # len(cleaned)
@@ -101,13 +118,12 @@ def tokenize_this_list(cleaned_tweets):
     print('TOTAL LENGTH OF SCORE TOTALS   ', len(score_totals_list))
     print('TOTAL LENGTH OF TWEETS   ', len(cleaned_tweets))
     print('TOTAL LENGTH OF TOKEN MASTER   ', len(token_master))
-    # score_totals_list.to_csv('score_totals_list.csv')
-
+    #score_totals_list.to_csv('score_totals_list.csv')
 tokenize_this_list(cleaned_tweets)
 # score_totals = pd.DataFrame(score_totals_list)
 # score_totals.to_csv('score_totals_list.csv')
 
-
+print('!~!~!~!',len(score_totals_list))
 staging_data = pd.DataFrame(cleaned_tweets, token_master, score_totals_list)
 # print('TOTAL LENGTH OF TWEETS   ', len(score_totals_list))
 
