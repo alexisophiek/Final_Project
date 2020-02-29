@@ -1,0 +1,358 @@
+.navigation__input,
+.u-visually-hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    -webkit-clip-path: polygon(0 0, 0 0, 0 0);
+    clip-path: polygon(0 0, 0 0, 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap
+}
+
+
+/*! normalize-scss | MIT/GPLv2 License | bit.ly/normalize-scss */
+
+html {
+    line-height: 1.15;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    box-sizing: border-box;
+    height: 100%;
+    overflow-x: hidden
+}
+
+body {
+    margin: 0;
+    background-color: #00acee;
+    min-height: 100%;
+    font-family: Bryant-Condensed, "Helvetica Neue", helvetica, arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+main,
+menu,
+nav,
+section {
+    display: block
+}
+
+h1 {
+    margin: .67em 0
+}
+
+
+a {
+    -webkit-text-decoration-skip: objects;
+    text-decoration: underline;
+    background-color: transparent
+}
+
+
+small {
+    font-size: 80%
+}
+
+
+img {
+    border-style: none
+}
+
+
+@font-face {
+    font-family: "Bryant-Condensed";
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+    src: url(../fonts/BryantCondensed/BryantCondensed-Light.woff) format("woff")
+}
+
+@font-face {
+    font-family: "Bryant-Condensed";
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    src: url(../fonts/BryantCondensed/BryantCondensed-Regular.woff) format("woff")
+}
+
+@font-face {
+    font-family: "Bryant-Condensed";
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+    src: url(../fonts/BryantCondensed/BryantCondensed-Medium.woff) format("woff")
+}
+
+@font-face {
+    font-family: "Bryant-Condensed";
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    src: url(../fonts/BryantCondensed/BryantCondensed-Bold.woff) format("woff")
+}
+
+@font-face {
+    font-family: "Bryant-Condensed";
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+    src: url(../fonts/BryantPro/BryantPro-RegularItalic.woff) format("woff")
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ol,
+p,
+ul {
+    margin-top: 0
+}
+
+blockquote {
+    margin: 0
+}
+
+*,
+::after,
+::before {
+    box-sizing: inherit
+}
+
+body::before {
+    content: 'mobile';
+    display: none
+}
+
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-transform: uppercase
+}
+
+.h1,
+h1 {
+    font-size: 46px;
+    line-height: 48px;
+    font-weight: 700;
+    letter-spacing: -.03em;
+    margin-bottom: 5px
+}
+
+
+
+.h2,
+h2 {
+    font-size: 32px;
+    line-height: 30px;
+    font-weight: 700;
+    letter-spacing: -.03em;
+    margin-bottom: 3px
+}
+
+
+.h3,
+h3 {
+    font-size: 20px;
+    line-height: 18px;
+    font-weight: 400;
+    letter-spacing: -.03em;
+    margin-bottom: 3px
+}
+
+
+.h4,
+h4 {
+    font-size: 16px;
+    line-height: 18px;
+    font-weight: 700;
+    letter-spacing: -.03em;
+    margin-bottom: 0
+}
+
+ol,
+ul {
+    margin-bottom: 16px;
+    padding-left: 16px
+}
+
+p.large {
+    font-size: 16px;
+    line-height: 22px
+}
+
+
+a:focus,
+a:hover {
+    text-decoration: none
+}
+
+.icon {
+    display: inline-block;
+    width: 48px;
+    height: 48px
+}
+
+.site__header {
+    background-image: url(../img/header-mobile.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 920px 568px;
+    height: 568px
+}
+
+
+
+.site__content {
+    overflow: hidden
+}
+
+.navigation.s-locked .navigation__panel {
+    position: absolute;
+    top: 0;
+    bottom: 0
+}
+
+.navigation.s-open .navigation__panel {
+    box-shadow: 15px 15px 10px rgba(0, 0, 0, .15);
+    transition: transform .1s ease;
+    transform: translateX(0)
+}
+
+.footer {
+    text-align: center;
+    padding: 75px 0 70px
+}
+
+
+.footer__content {
+    max-width: 1024px;
+    padding: 0 24px;
+    margin: 0 auto;
+    display: inline-flex;
+    flex-flow: column;
+    align-items: center
+}
+
+
+.footer__background {
+    position: absolute;
+    top: 0;
+    left: 0
+}
+
+.footer__section--visit-us {
+    padding-top: 51px
+}
+
+
+
+.footer__background--visit-us {
+    left: -41px;
+    width: 234px;
+    height: 69px
+}
+
+
+.footer__section--find-us {
+    padding-top: 42px
+}
+
+.footer__background--find-us {
+    left: 50%;
+    transform: translateX(-83px);
+    width: 140px;
+    height: 66px
+}
+
+.footer__section--call-us {
+    padding-top: 18px
+}
+
+
+.footer__background--call-us {
+    left: -105px;
+    width: 140px;
+    height: 66px
+}
+
+.footer__section--email-us {
+    padding-top: 55px
+}
+
+.footer__background--email-us {
+    top: 5px;
+    left: 50%;
+    transform: translateX(-59px);
+    width: 51px;
+    height: 36px
+}
+
+.footer__title {
+    margin-bottom: 0
+}
+
+.footer__social {
+    display: flex;
+    flex-flow: column;
+    justify-content: center
+}
+
+.footer__social-list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 5px auto 0;
+    padding-left: 0
+}
+
+.footer__social-link {
+    margin-right: 10px
+}
+
+.container {
+    max-width: 320px;
+    padding: 0 24px 0 40px;
+    margin: 0 auto
+}
+
+@media (min-width:768px) {
+    .container {
+        padding-left: 96px;
+        max-width: 768px
+    }
+}
+
+@media (min-width:1024px) {
+    .container {
+        padding-left: 128px;
+        max-width: 1024px
+    }
+}
