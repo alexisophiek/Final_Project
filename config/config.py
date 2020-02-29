@@ -9,10 +9,9 @@ access_token_secret = ""
 
 bearer_token = "ukmfA5MuEmWQ4oWTVvRCELA8NPbur13JRqYflEp6Hpn8C"
 
-dev_environment_label = ""
 
-pguser = "alexis"
-pw = "datasucks"
+DBS_URL = "postgres://twitter_app:twittwat@localhost:3306/postgres"
+
 
 # curl bearer token response:
 # {"token_type":"bearer","access_token":"AAAAAAAAAAAAAAAAAAAAAKCWCQEAAAAAfQ5tJUd0NhsRf2CI15wGmCeROpg%3DMLvJC1v3R5zfLSgEXHxgGOgygMrHQpyHYxssBUxIE1wbGPnaIj"}(pythondata)
