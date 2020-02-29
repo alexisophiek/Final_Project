@@ -12,6 +12,8 @@ import pandas as pd
 from nltk import classify
 from nltk import NaiveBayesClassifier
 from nltk.corpus import stopwords
+from nltk_modeling import remove_noise
+from nltk_modeling import classifier
 nltk.download('stopwords')
 nltk.download('wordnet')
 nltk.download('averaged_perceptron_tagger')

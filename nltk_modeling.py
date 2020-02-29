@@ -9,6 +9,7 @@ import psycopg2
 from textblob import TextBlob 
 from nltk.tokenize import word_tokenize
 import pandas as pd
+import requests
 from nltk import classify
 from nltk import NaiveBayesClassifier
 from nltk.corpus import stopwords
