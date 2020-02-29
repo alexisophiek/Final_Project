@@ -4,6 +4,22 @@ from flask import jsonify
 # from flask import jsonify
 app = Flask(__name__)
 
+import psycopg2
+# from nltk.tokenize import word_tokenize
+import pandas as pd
+from config.config import pguser, pw
+
+
+from nltk_modeling import remove_noise
+from nltk_cleaning import clean_tweets, get_tweets, nltk_sentiment
+
+
+conn = psycopg2.connect(user = f"{pguser}",
+                                password = f"{pw}",
+                                host = "127.0.0.1",
+                                port = "3306",
+                                database = "postgres")
+
 import nltk_modeling
 import nltk
 from nltk.tag import pos_tag
@@ -63,6 +79,16 @@ def tweets():
 
 	# return template('dump.html')
    
+
+@app.route("/cleaned_tweets")
+def get_cleaned():
+    tweet_list = get_tweets(conn)
+    cleaned = clean_tweets(tweet_list)
+    clean_sent = nltk_sentiment(cleaned)
+    return clean_sent.to_json()
+
+
+
 if __name__ == "__main__":
 	app.run(debug=True)
 
