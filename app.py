@@ -2,13 +2,13 @@ from flask import Flask, render_template, redirect, make_response
 from flask import jsonify
 import psycopg2
 import pandas as pd
-from config.config import DBS_URL
 from nltk_modeling import remove_noise
 from nltk_cleaning import clean_tweets, get_tweets, nltk_sentiment, generate_tweet_list
 from nrc_mashup import create_nrc, full_list
 
 
-conn = psycopg2.connect(DBS_URL)
+DB = os.environ.get("DBS_URL")
+conn = psycopg2.connect(DB)
 
 # conn = psycopg2.connect(user = "twitter_app",
 #                                   password = "dataistwitter",
