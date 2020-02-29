@@ -10,7 +10,7 @@ access_token_secret = ""
 bearer_token = "***REMOVED_BEARER_TOKEN***"
 
 
-DBS_URL = "postgres://twitter_app:twittwat@postgres:3306/postgres"
+DBS_URL = "postgres://twitter_app:twittwat@localhost:3306/postgres"
 
 
 
