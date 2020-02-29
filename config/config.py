@@ -10,7 +10,10 @@ access_token_secret = ""
 bearer_token = "ukmfA5MuEmWQ4oWTVvRCELA8NPbur13JRqYflEp6Hpn8C"
 
 
-DBS_URL = "postgres://twitter_app:twittwat@localhost:3306/postgres"
+DBS_URL = "postgres://twitter_app:twittwat@postgres:3306/postgres"
+
+
+
 
 
 # curl bearer token response:
