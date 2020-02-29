@@ -22,23 +22,7 @@ from nltk import classify
 from nltk import NaiveBayesClassifier
 from nltk.corpus import stopwords
 # import jsonify
-from flask import Flask, render_template, redirect, make_response
-# import nltk
-# from nltk.tag import pos_tag
-# from nltk.stem.wordnet import WordNetLemmatizer
-# import re
-# import string
-# from nltk import FreqDist
-# import random
-# import psycopg2
-# from nltk.tokenize import word_tokenize
-import pandas as pd
-# import requests
-# from nltk import classify
-# from nltk import NaiveBayesClassifier
-# from nltk.corpus import stopwords
-from nltk_modeling import remove_noise, classifier
-from nltk_cleaning import clean_tweets, tweet_list, nltk_sentiment
+
 
 cleaned_tweets = []
 
@@ -69,7 +53,7 @@ def get_cleaned():
 	cleaned_tweets = cleaned.to_json()
 	return cleaned_tweets
 
-<<<<<<< HEAD
+
 @app.route("/tweets")
 def tweets():
 	return render_template('tweets.html')
@@ -78,11 +62,7 @@ def tweets():
 	# file = os.path.join('application','static','data','CSV_Files', 'combined.csv')
 
 	# return template('dump.html')
-=======
-
    
-    
->>>>>>> c5e86f1781a377c9eacfd7f50718185a874478b7
 if __name__ == "__main__":
 	app.run(debug=True)
 
