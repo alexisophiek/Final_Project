@@ -56,18 +56,20 @@ def remove_noise(tweet_tokens, stop_words = ()):
             cleaned_tokens.append(token.lower())
     return cleaned_tokens
 
+def generate_training_data():
+    positive_tweet_tokens = twitter_samples.tokenized('positive_tweets.json')
+    negative_tweet_tokens = twitter_samples.tokenized('negative_tweets.json')
 
-positive_tweet_tokens = twitter_samples.tokenized('positive_tweets.json')
-negative_tweet_tokens = twitter_samples.tokenized('negative_tweets.json')
+    positive_cleaned_tokens_list = []
+    negative_cleaned_tokens_list = []
 
-positive_cleaned_tokens_list = []
-negative_cleaned_tokens_list = []
+    for tokens in positive_tweet_tokens:
+        positive_cleaned_tokens_list.append(remove_noise(tokens, stop_words))
 
-for tokens in positive_tweet_tokens:
-    positive_cleaned_tokens_list.append(remove_noise(tokens, stop_words))
+    for tokens in negative_tweet_tokens:
+        negative_cleaned_tokens_list.append(remove_noise(tokens, stop_words))
 
-for tokens in negative_tweet_tokens:
-    negative_cleaned_tokens_list.append(remove_noise(tokens, stop_words))
+    return positive_cleaned_tokens_list, negative_cleaned_tokens_list
 
 
 def get_all_words(cleaned_tokens_list):
@@ -80,7 +82,8 @@ def get_tweets_for_model(cleaned_tokens_list):
     for tweet_tokens in cleaned_tokens_list:
         yield dict([token, True] for token in tweet_tokens)
 
-def modeling(get_tweets_for_model):
+def modeling():
+    positive_cleaned_tokens_list, negative_cleaned_tokens_list = generate_training_data()
     positive_tokens_for_model = get_tweets_for_model(positive_cleaned_tokens_list)
     negative_tokens_for_model = get_tweets_for_model(negative_cleaned_tokens_list)
 
@@ -102,4 +105,4 @@ def modeling(get_tweets_for_model):
 
     return classifier
 
-modeling(get_tweets_for_model)
+# modeling(get_tweets_for_model)

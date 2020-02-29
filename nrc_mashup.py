@@ -1,4 +1,4 @@
-from nltk_cleaning import tweet
+
 from nltk.tokenize import word_tokenize
 import pandas as pd
 
@@ -12,18 +12,23 @@ def tokenize_this_list(text):
         token_count.append(count)
     return token_count, token_list
 
-token_count, token_list = tokenize_this_list(tweet)
+# tweet = generate_tweet_list()
+
+# token_count, token_list = tokenize_this_list(tweet)
 
 # print('Length of Token_Count =' + str(len(token_count)))
 # print('Length of Token_List =' + str(len(token_list)))
 
 # NRC
-filepath = "NRC-Sentiment-Emotion-Lexicons/NRC-Emotion-Lexicon-v0.92/NRC-Emotion-Lexicon-Wordlevel-v0.92.txt"
-emolex_df = pd.read_csv(filepath,  names=["word", "emotion", "association"], skiprows=45, sep='\t')
-emolex_words = emolex_df.pivot(index='word', columns='emotion', values='association').reset_index()
+def create_nrc():
+    filepath = "NRC-Sentiment-Emotion-Lexicons/NRC-Emotion-Lexicon-v0.92/NRC-Emotion-Lexicon-Wordlevel-v0.92.txt"
+    emolex_df = pd.read_csv(filepath,  names=["word", "emotion", "association"], skiprows=45, sep='\t')
+    emolex_words = emolex_df.pivot(index='word', columns='emotion', values='association').reset_index()
+    return emolex_df
 
 
-def full_list(token_list, df):
+def full_list(tweets, df):
+    token_count, token_list = tokenize_this_list(tweets)
     # Set list to hold dictionary and return
     emo_list = []
     # Loop through tweets in list
@@ -54,9 +59,9 @@ def full_list(token_list, df):
     # return list
     return emo_list
 
-emotion_list = full_list(token_list,emolex_df)
+# emotion_list = full_list(token_list,emolex_df)
                
-print(emotion_list[:10])
+# print(emotion_list[:10])
 
 
 
