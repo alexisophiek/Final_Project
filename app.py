@@ -10,6 +10,12 @@ from nrc_mashup import create_nrc, full_list
 
 conn = psycopg2.connect(DBS_URL)
 
+# conn = psycopg2.connect(user = "twitter_app",
+#                                   password = "dataistwitter",
+#                                   host = "127.0.0.1",
+#                                   port = "3306",
+#                                   database = "postgres")
+
 # from flask import jsonify
 app = Flask(__name__)
 
