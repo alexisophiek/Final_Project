@@ -10,6 +10,7 @@ from nltk.tokenize import word_tokenize
 from nltk.tag import pos_tag
 from nltk_modeling import remove_noise, modeling
 
+
 def get_tweets(conn):
     cursor = conn.cursor()
     tweet_list = []
@@ -31,10 +32,18 @@ def clean_tweets(tweet_list):
         tweet_list = [re.sub(item,'',tweet) for tweet in tweet_list]
     return tweet_list
 
+def generate_tweet_list(cleaned):
+    tweet = []
+    for each in cleaned:
+        custom_tweet = each
+        tweet.append(custom_tweet)
+    return tweet
+
 #NLTK Sentiment addition to tweets, tweets cleaned but untokenized?
 def nltk_sentiment(cleaned):
     tweet = []
     sentiment = []
+    classifier = modeling()
     for each in cleaned:
         custom_tweet = each
         tweet.append(custom_tweet)
@@ -44,5 +53,6 @@ def nltk_sentiment(cleaned):
         clean_sentiment = pd.DataFrame(tweet, sentiment).reset_index()
         clean_sentiment = clean_sentiment.rename(columns = {"index":"NLTK sentiment",0:"tweet"})
     return clean_sentiment
+
 
 print("Cleaning Utility is Ready")

@@ -60,3 +60,4 @@ DB Connection:
 * cloud_sql_proxy -instances=data-class-1570673095864:us-west1:twitter-db=tcp:3306
 * count of tweets by day- running line graph for mapping total activity.
 * twitter search for top 4 candidates and see how many retweets per day they have?
+* heroku config:set GOOGLE_APPLICATION_CREDENTIALS=‘config/googlekeyFile.json’

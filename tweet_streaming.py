@@ -1,4 +1,4 @@
-from config import *
+from config.config import consumer_key,consumer_secret,access_token,access_token_secret
 import tweepy
 
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
@@ -17,32 +17,31 @@ class MyStreamListener(tweepy.StreamListener):
         print(status.text)
 
 
-#     def on_data(self, data):
-#         print("On Data")
-#         all_data = json.loads(data)
-# #         print(json.dumps(all_data, indent=4))
-#         date = all_data['created_at']
-#         place = all_data['user']['location']
-#         tweet = all_data["text"].replace('"', "")
-#         username = all_data["user"]["screen_name"]
-#         metadata = all_data['user']["favourites_count"]
-#         print(date)
-#         print((place, username, tweet))
-#         self.num_tweets += 1
-#         if self.num_tweets < 500:
-#             cursor.execute('INSERT INTO twitter_feed (date, user_location, user_id, text, metadata) VALUES (%s,%s,%s,%s,%s);', (dt.strptime(
-#                 date, '%a %b %d %H:%M:%S %z %Y').strftime('%Y-%m-%d %H:%M:%S'), place, tweet, username, metadata))
+    def on_data(self, data):
+        print("On Data")
+        all_data = json.loads(data)
+        date = all_data['created_at']
+        place = all_data['user']['location']
+        tweet = all_data["text"].replace('"', "")
+        username = all_data["user"]["screen_name"]
+        metadata = all_data['user']["favourites_count"]
+        print(date)
+        print((place, username, tweet))
+        self.num_tweets += 1
+        if self.num_tweets < 500:
+            cursor.execute('INSERT INTO twitter_feed (date, user_location, user_id, text, metadata) VALUES (%s,%s,%s,%s,%s);', (dt.strptime(
+                date, '%a %b %d %H:%M:%S %z %Y').strftime('%Y-%m-%d %H:%M:%S'), place, tweet, username, metadata))
 
-#             cursor.execute('INSERT INTO tweets (data) VALUES (%s);',
-#                            (json.dumps(all_data),))
-#             conn.commit()
+            cursor.execute('INSERT INTO tweets (data) VALUES (%s);',
+                           (json.dumps(all_data),))
+            conn.commit()
 
-#             print(self.num_tweets)
-#             print((username, tweet))
+            print(self.num_tweets)
+            print((username, tweet))
 
-#             return True
-#         else:
-#             return False
+            return True
+        else:
+            return False
 
 
 myStreamListener = MyStreamListener()
