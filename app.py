@@ -7,7 +7,8 @@ app = Flask(__name__)
 import psycopg2
 # from nltk.tokenize import word_tokenize
 import pandas as pd
-from config.config import pguser, pw
+from config import pguser, pw # import config
+# from config.config import pguser, pw
 
 
 from nltk_modeling import remove_noise
@@ -64,20 +65,19 @@ def nrcLexicon():
 	# emo = jsonify(emolex_words)
 	return emo
 
-@app.route("/cleaned_tweets")
-def get_cleaned():
-	cleaned_tweets = cleaned.to_json()
-	return cleaned_tweets
+# @app.route("/cleaned_tweets")
+# def get_cleaned():
+# 	cleaned_tweets = cleaned.to_json()
+# 	return cleaned_tweets
 
+# @app.route("/cleaned_tweets")
+# def get_cleaned():
+# 	cleaned_tweets = cleaned.to_json()
+# 	return cleaned_tweets
 
 @app.route("/tweets")
 def tweets():
 	return render_template('tweets.html')
-
-
-	# file = os.path.join('application','static','data','CSV_Files', 'combined.csv')
-
-	# return template('dump.html')
    
 
 @app.route("/cleaned_tweets")
