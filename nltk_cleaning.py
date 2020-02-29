@@ -8,29 +8,22 @@ from nltk import classify
 from nltk import NaiveBayesClassifier
 from nltk.tokenize import word_tokenize
 from nltk.tag import pos_tag
-from nltk_modeling import remove_noise
-from nltk_modeling import classifier
-from config.config import pguser, pw
+from nltk_modeling import remove_noise, modeling
 
-conn = psycopg2.connect(user = f"{pguser}",
-                                password = f"{pw}",
-                                host = "127.0.0.1",
-                                port = "3306",
-                                database = "postgres")
-
-cursor = conn.cursor()
-tweet_list = []
-followers = []
-cursor.execute("select * from tweets")
-tweets = cursor.fetchall()
-if not tweets:
-    print("empty")
-for row in tweets:
-    for col in row:
-        if type(col) is dict:
-            tweet_list.append(col['text'])
-            followers.append(col['user']['followers_count'])
-
+def get_tweets(conn):
+    cursor = conn.cursor()
+    tweet_list = []
+    followers = []
+    cursor.execute("select * from tweets")
+    tweets = cursor.fetchall()
+    if not tweets:
+        print("empty")
+    for row in tweets:
+        for col in row:
+            if type(col) is dict:
+                tweet_list.append(col['text'])
+                followers.append(col['user']['followers_count'])
+    return tweet_list
 
 def clean_tweets(tweet_list):
     remove_list = [r'@[A-Za-z0-9]+','https?://[A-Za-z0-9./]+','\n','RT :',r'_[A-Za-z0-9]+','  ']
