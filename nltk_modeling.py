@@ -2,30 +2,31 @@ import nltk
 from nltk.tag import pos_tag
 from nltk.corpus import twitter_samples
 from nltk.stem.wordnet import WordNetLemmatizer
-import re, string
+from nltk import classify
+from nltk import NaiveBayesClassifier
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
 from nltk import FreqDist
+import re, string
 import random
 import psycopg2
-from textblob import TextBlob 
-from nltk.tokenize import word_tokenize
 import pandas as pd
+<<<<<<< HEAD
 import requests
 from nltk import classify
 from nltk import NaiveBayesClassifier
 from nltk.corpus import stopwords
+=======
+
+>>>>>>> c5e86f1781a377c9eacfd7f50718185a874478b7
 nltk.download('stopwords')
 nltk.download('wordnet')
 nltk.download('averaged_perceptron_tagger')
 nltk.download('twitter_samples')
 
 stop_words = stopwords.words('english')
-
-
 text = twitter_samples.strings('tweets.20150430-223406.json')
-twitter_samples
-
 tweet_tokens = twitter_samples.tokenized('positive_tweets.json')
-print(pos_tag(tweet_tokens[0]))
 
 def lemmatize_sentence(tokens):
     lemmatizer = WordNetLemmatizer()
@@ -39,8 +40,6 @@ def lemmatize_sentence(tokens):
             pos = 'a'
         lemmatized_sentence.append(lemmatizer.lemmatize(word, pos))
     return lemmatized_sentence
-
-print(lemmatize_sentence(tweet_tokens[0]))
 
 def remove_noise(tweet_tokens, stop_words = ()):
 
@@ -110,5 +109,3 @@ test_data = dataset[7000:]
 classifier = NaiveBayesClassifier.train(train_data)
 
 print("Accuracy is:", classify.accuracy(classifier, test_data))
-
-print(classifier.show_most_informative_features(10))
