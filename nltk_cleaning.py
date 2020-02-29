@@ -1,28 +1,28 @@
 import nltk
-from nltk.tag import pos_tag
-from nltk.corpus import twitter_samples
-from nltk.stem.wordnet import WordNetLemmatizer
 import re, string
-from nltk import FreqDist
 import random
 import psycopg2
-from textblob import TextBlob 
-from nltk.tokenize import word_tokenize
 import pandas as pd
+from nltk import FreqDist
 from nltk import classify
 from nltk import NaiveBayesClassifier
+from nltk.tokenize import word_tokenize
+from nltk.tag import pos_tag
+from nltk.stem.wordnet import WordNetLemmatizer
 from nltk.corpus import stopwords
+from nltk_modeling import remove_noise
+from nltk_modeling import classifier
 nltk.download('stopwords')
 nltk.download('wordnet')
 nltk.download('averaged_perceptron_tagger')
-nltk.download('twitter_samples')
+from config.config import pguser, pw
+
 
 stop_words = stopwords.words('english')
 
 
-p="datasucks"
-conn = psycopg2.connect(user = "alexis",
-                                  password = f"{p}",
+conn = psycopg2.connect(user = f"{pguser}",
+                                  password = f"{pw}",
                                   host = "127.0.0.1",
                                   port = "3306",
                                   database = "postgres")
@@ -50,7 +50,6 @@ def clean_tweets(remove_list,tweet_list):
 cleaned = clean_tweets(remove_list,tweet_list)
 
 #NLTK Sentiment addition to tweets, tweets cleaned but untokenized?
-
 tweet = []
 sentiment = []
 for each in cleaned:
@@ -61,3 +60,5 @@ for each in cleaned:
                                          
 clean_sentiment = pd.DataFrame(tweet, sentiment).reset_index()
 clean_sentiment = clean_sentiment.rename(columns = {"index":"NLTK sentiment",0:"tweet"})
+
+print("Dataframe clean_sentiment has been updated")
