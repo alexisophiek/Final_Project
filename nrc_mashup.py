@@ -1,3 +1,6 @@
+from nltk_cleaning import tweet
+from nltk.tokenize import word_tokenize
+import pandas as pd
 
 def tokenize_this_list(text):
     token_list = []
@@ -11,15 +14,13 @@ def tokenize_this_list(text):
 
 token_count, token_list = tokenize_this_list(tweet)
 
-print('Length of Token_Count =' + str(len(token_count)))
-print('Length of Token_List =' + str(len(token_list)))
+# print('Length of Token_Count =' + str(len(token_count)))
+# print('Length of Token_List =' + str(len(token_list)))
 
 # NRC
 filepath = "NRC-Sentiment-Emotion-Lexicons/NRC-Emotion-Lexicon-v0.92/NRC-Emotion-Lexicon-Wordlevel-v0.92.txt"
 emolex_df = pd.read_csv(filepath,  names=["word", "emotion", "association"], skiprows=45, sep='\t')
 emolex_words = emolex_df.pivot(index='word', columns='emotion', values='association').reset_index()
-
-
 
 
 def full_list(token_list, df):
@@ -61,11 +62,6 @@ print(emotion_list[:10])
 
 
 
-
-
-
-
-# new = clean_sentiment.groupby("sentiment")["sentiment"].count()
 
 # REFACTOR INTO LOOP FOR EACH KEY WORD OR CANDIDATE
 # bernie = []
