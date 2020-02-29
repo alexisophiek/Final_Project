@@ -11,11 +11,9 @@ app = Flask(__name__)
 def home():
     return render_template('main.html', title='Twit Stack')
 
-@app.route("/tweets")
-def tweets():
-    # return render_template('main.html', title='Twit Stack')
 
-
+   
+    
 if __name__ == "__main__":
     app.run(debug=True)
 
