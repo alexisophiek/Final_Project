@@ -14,6 +14,7 @@ DBS_URL = "postgres://twitter_app:twittwat@localhost:3306/postgres"
 
 
 
+# GSP_INSTANCES=data-class-1570673095864:us-west1:twitter-db=tcp:3306
 
 
 # curl bearer token response:
