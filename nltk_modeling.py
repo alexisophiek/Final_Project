@@ -11,14 +11,12 @@ import re, string
 import random
 import psycopg2
 import pandas as pd
-<<<<<<< HEAD
+
 import requests
 from nltk import classify
 from nltk import NaiveBayesClassifier
 from nltk.corpus import stopwords
-=======
 
->>>>>>> c5e86f1781a377c9eacfd7f50718185a874478b7
 nltk.download('stopwords')
 nltk.download('wordnet')
 nltk.download('averaged_perceptron_tagger')
