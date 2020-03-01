@@ -1,5 +1,4 @@
 wordnet
-FreqDist
 tokenize
 word_tokenize
 stopwords
