@@ -11,8 +11,9 @@ import subprocess
 # subprocess.call("bin/run_cloud_sql_proxy")
 
 DB = os.environ.get("DBS_URL")
-conn = psycopg2.connect(DB)
-
+# conn = psycopg2.connect(DB)
+from sqlalchemy import create_engine
+engine = create_engine(DB)
 # conn = psycopg2.connect(user = "twitter_app",
 #                                   password = "dataistwitter",
 #                                   host = "127.0.0.1",
@@ -41,7 +42,7 @@ def home():
 # def tweets():
 #     cursor = conn.cursor()
 #     cursor.execute("select * from tweets")
-#     tweets = cursor.fetchall()
+#     tweets = cursor.fetchall()x
     
 #     return pd.DataFrame(tweets).to_json()
 	# return render_template('main.html', title='Twit Stack')
