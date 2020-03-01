@@ -5,13 +5,13 @@ import pandas as pd
 # from nltk_modeling import remove_noise
 # from nltk_cleaning import clean_tweets, get_tweets, nltk_sentiment, generate_tweet_list
 # from nrc_mashup import create_nrc, full_list
-# from new_NLTK_clean_and_classify import tweet_list
+from new_NLTK_clean_and_classify import tweet_list
 # from nrc_mashup import emolex_df, full_list
 import os
 import subprocess
 import json
 
-# subprocess.call("bin/run_cloud_sql_proxy")
+subprocess.call("bin/run_cloud_sql_proxy")
 
 # DB = os.environ.get("DBS_URL")
 # conn = psycopg2.connect(DB)
