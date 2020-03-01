@@ -9,7 +9,7 @@ import os
 import subprocess
 import json
 
-# subprocess.call("bin/run_cloud_sql_proxy")
+subprocess.call("bin/run_cloud_sql_proxy")
 
 DB = os.environ.get("DBS_URL")
 # conn = psycopg2.connect(DB)
