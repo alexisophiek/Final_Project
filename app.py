@@ -43,11 +43,11 @@ def home():
 @app.route("/tweets")
 def tweets():
     try:
-        data = pd.read_sql("select * from tweets limit 5;", con=engine).to_json(index=False,orient="table")
+        data = pd.read_sql("select * from tweets;", con=engine).to_json(index=False,orient="table")
         tweets = json.loads(data)
     
         return jsonify(tweets['data'])
-        
+
     except:
         print("Error!  It did not work")
 
