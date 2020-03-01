@@ -39,9 +39,7 @@ def home():
 
 @app.route("/tweets")
 def tweets():
-	cursor = conn.cursor()
-    tweet_list = []
-    followers = []
+    cursor = conn.cursor()
     cursor.execute("select * from tweets")
     tweets = cursor.fetchall()
     
