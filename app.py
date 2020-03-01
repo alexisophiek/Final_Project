@@ -47,6 +47,7 @@ def tweets():
         tweets = json.loads(data)
     
         return jsonify(tweets['data'])
+        
     except:
         print("Error!  It did not work")
 
