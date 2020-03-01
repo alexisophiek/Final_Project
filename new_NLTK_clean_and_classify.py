@@ -2,28 +2,35 @@ import nltk
 from nltk.tag import pos_tag
 # from nltk.corpus import twitter_samples
 from nltk.stem.wordnet import WordNetLemmatizer
-import re, string
+import re
+import string
 from nltk import FreqDist
 import random
 import psycopg2
-# from textblob import TextBlob 
+# from textblob import TextBlob
 from nltk.tokenize import word_tokenize
 import pandas as pd
 from nltk.corpus import stopwords
 from nltk import classify
 import pickle
 import requests
+import time
+import json
 stop_words = stopwords.words('english')
-# from sqlalchemy import create_engine
-# engine = create_engine(DB)
-# # engine = create_engine("postgresql://postgres:dataisgreat@localhost:3306/postgres")
+from sqlalchemy import create_engine
+engine = create_engine(DB)
+# engine = create_engine("postgresql://postgres:dataisgreat@localhost:3306/postgres")
+
 
 def get_tweets():
     tweets = []
-    response = requests.get("https://twitstackusa.herokuapp.com/tweets")
-    raw_tweets = response.json()
+    data = pd.read_sql("select * from tweets;", con=engine).to_json(index=False,orient="table")
+    raw_tweets = json.loads(data)['data']
     for tweet in raw_tweets:
         tweets.append(tweet['data'])
+
+    return tweets
+
 
 def lemmatize_sentence(tokens):
     lemmatizer = WordNetLemmatizer()
@@ -38,13 +45,15 @@ def lemmatize_sentence(tokens):
         lemmatized_sentence.append(lemmatizer.lemmatize(word, pos))
     return lemmatized_sentence
 
-def remove_noise(tweet_tokens, stop_words = ()):
+
+def remove_noise(tweet_tokens, stop_words=()):
 
     cleaned_tokens = []
 
     for token, tag in pos_tag(tweet_tokens):
-        token = re.sub('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+#]|[!*\(\),]|'                       '(?:%[0-9a-fA-F][0-9a-fA-F]))+','', token)
-        token = re.sub("(@[A-Za-z0-9_]+)","", token)
+        token = re.sub(
+            'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+#]|[!*\(\),]|'                       '(?:%[0-9a-fA-F][0-9a-fA-F]))+', '', token)
+        token = re.sub("(@[A-Za-z0-9_]+)", "", token)
 
         if tag.startswith("NN"):
             pos = 'n'
@@ -83,6 +92,7 @@ def get_our_tweets():
 
 def clean_our_tweets(tweet_list):
     our_tweet_tokens = []
+    our_words = []
     for each in tweet_list:
         our_tweet_tokens.append(nltk.word_tokenize(each))
     clean_tweet_tokens = []
@@ -91,6 +101,7 @@ def clean_our_tweets(tweet_list):
         our_words = get_all_words(clean_tweet_tokens)
     return clean_tweet_tokens, our_words
 
+
 def classify_pickle(clean_tweet_tokens):
     loaded_model = pickle.load(open(f"notebooks/my_classifier.sav", 'rb'))
 
@@ -98,9 +109,11 @@ def classify_pickle(clean_tweet_tokens):
     sentiment = []
     for each in clean_tweet_tokens:
         tweet.append(each)
-        sentiment.append(loaded_model.classify(dict([token, True] for token in each))) 
-    cleaned_df = pd.DataFrame({"Tokens":tweet,"Emotions":sentiment})
+        sentiment.append(loaded_model.classify(
+            dict([token, True] for token in each)))
+    cleaned_df = pd.DataFrame({"Tokens": tweet, "Emotions": sentiment})
     return cleaned_df
+
 
 print("Cleaning Utility is Ready")
 
@@ -110,4 +123,3 @@ clean_tweet_tokens, our_words = clean_our_tweets(tweet_list)
 print("Cleaning Utilized on Tweets")
 cleaned_df = classify_pickle(clean_tweet_tokens)
 print("Tweets Classified")
-
