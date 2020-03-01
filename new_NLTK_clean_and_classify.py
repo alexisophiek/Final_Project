@@ -16,8 +16,11 @@ import pickle
 import requests
 import time
 import json
+import os
 stop_words = stopwords.words('english')
 from sqlalchemy import create_engine
+
+DB = os.environ.get("DBS_URL")
 engine = create_engine(DB)
 # engine = create_engine("postgresql://postgres:dataisgreat@localhost:3306/postgres")
 
