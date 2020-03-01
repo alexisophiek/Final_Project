@@ -1,14 +1,27 @@
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<!-- d3 JS CDN v5-->
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
+<link rel="icon" type="image/x-icon" class="js-site-favicon" href="/static/images/favicon.ico">
+
+
 
 </head>
 
 <body>
+    {% include 'nav.html' %}
+
     <div class="site">
         <header class="site__header">
             <h1 class="u-visually-hidden">Welcome to Twit Stack</h1>
-            <link rel="stylesheet" href="../static/css/style.css">
+            
         </header>
         <main class="site__main">
             <div class="site__nav">
@@ -31,6 +44,7 @@
                     </li> -->
                 </div>
             </div>
+            <h3>Home/Index/Main</h3>
             <div class="site__content">
                 <div class="container">
                     <section id="first-section" class="grid grid--01-our-mission">
