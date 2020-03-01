@@ -1,29 +1,26 @@
 import nltk
 from nltk.tag import pos_tag
-# from nltk.corpus import twitter_samples
 from nltk.stem.wordnet import WordNetLemmatizer
 import re, string
 from nltk import FreqDist
 import random
-import psycopg2
-# from textblob import TextBlob 
 from nltk.tokenize import word_tokenize
 import pandas as pd
 from nltk.corpus import stopwords
 from nltk import classify
 import pickle
 stop_words = stopwords.words('english')
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
 
+engine = create_engine("postgresql://postgres:dataisgreat@localhost:3306/postgres")
 
-p="datasucks"
-conn = psycopg2.connect(user = "alexis",
-                                  password = f"{p}",
-                                  host = "127.0.0.1",
-                                  port = "3306",
-                                  database = "postgres")
+# create a configured "Session" class
+Session = sessionmaker(bind=engine)
 
-cursor = conn.cursor()
+# create a Session
+session = Session()
 
 
 def lemmatize_sentence(tokens):
@@ -71,11 +68,10 @@ def get_all_words(cleaned_tokens_list):
 def get_our_tweets():
     tweet_list = []
     followers = []
-    cursor.execute("select * from tweets")
-    tweets = cursor.fetchall()
-    if not tweets:
+    result = session.execute("select * from tweets;")
+    if not result:
         print("empty")
-    for row in tweets:
+    for row in result:
         for col in row:
             if type(col) is dict:
                 tweet_list.append(col['text'])
@@ -90,8 +86,10 @@ def clean_our_tweets(tweet_list):
     clean_tweet_tokens = []
     for each in our_tweet_tokens:
         clean_tweet_tokens.append(remove_noise(each, stop_words))
-        our_words = get_all_words(clean_tweet_tokens)
-    return clean_tweet_tokens, our_words
+        # our_words = get_all_words(clean_tweet_tokens)
+    # return clean_tweet_tokens, our_words
+    return clean_tweet_tokens
+
 
 def classify_pickle(clean_tweet_tokens):
     loaded_model = pickle.load(open(f"notebooks/my_classifier.sav", 'rb'))
@@ -105,10 +103,9 @@ def classify_pickle(clean_tweet_tokens):
     return cleaned_df
 
 print("Cleaning Utility is Ready")
-
 tweet_list, followers = get_our_tweets()
 print("Tweets Received")
-clean_tweet_tokens, our_words = clean_our_tweets(tweet_list)
+clean_tweet_tokens = clean_our_tweets(tweet_list)
 print("Cleaning Utilized on Tweets")
 cleaned_df = classify_pickle(clean_tweet_tokens)
 print("Tweets Classified")

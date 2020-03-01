@@ -6,24 +6,27 @@ from nrc_mashup import emolex_df, full_list
 import os
 import subprocess
 import json
-
-
-
-subprocess.call("bin/run_cloud_sql_proxy")
-
-DB = os.environ.get("DBS_URL")
 from sqlalchemy import create_engine
-engine = create_engine(DB)
+
+''' 
+FOR HEROKU - UNCOMMENT
+'''
+# subprocess.call("bin/run_cloud_sql_proxy")
+
+# DB = os.environ.get("DBS_URL")
+# engine = create_engine(DB)
 
 app = Flask(__name__)
 
-
+'''
+FOR LOCAL - UNCOMMENT
+'''
+engine = create_engine("postgresql://postgres:dataisgreat@localhost:3306/postgres")
 
 
 @app.route("/")
 @app.route("/main")
 def home():
-    
 	return render_template('main.html', title='Twit Stack')
 
 @app.route("/dump")
@@ -40,16 +43,20 @@ def nrcLexicon():
 
 @app.route("/tweets")
 def tweets():
-    data = pd.read_sql("select * from tweets;", con=engine).to_json(index=False,orient="table")
-    tweets = json.loads(data)
+    try:
+        data = pd.read_sql("select * from tweets;", con=engine).to_json(index=False,orient="table")
+        tweets = json.loads(data)
+    
+        return jsonify(tweets['data'])
 
-    return jsonify(tweets['data'])
+    except:
+        print("Error!  It did not work")
 
 # NRC scored DF needs to be returned
 @app.route("/NRC_dict")
 def get_nrc():
     emo_dict = full_list(tweet_list, emolex_df)
-    return emo_dict
+    return jsonify({emo_dict: [emo_dict]})
 
 # # Word Cloud Return
 # # @app.route("/word_cloud")
