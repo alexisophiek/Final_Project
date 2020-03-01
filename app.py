@@ -29,9 +29,9 @@ engine = create_engine("postgresql://postgres:dataisgreat@localhost:3306/postgre
 def home():
 	return render_template('main.html', title='Twit Stack')
 
-@app.route("/dump")
-def dump():
-	return render_template('dump.html')
+# @app.route("/dump")
+# def dump():
+# 	return render_template('dump.html')
 
 @app.route("/NRC_lexicon")
 def nrcLexicon():
@@ -43,14 +43,8 @@ def nrcLexicon():
 
 @app.route("/tweets")
 def tweets():
-    try:
-        data = pd.read_sql("select * from tweets;", con=engine).to_json(index=False,orient="table")
-        tweets = json.loads(data)
-    
-        return jsonify(tweets['data'])
-
-    except:
-        print("Error!  It did not work")
+    data = pd.read_sql("select * from tweets", con=engine).to_json(index=False,orient="table")
+    tweets = json.loads(data)
 
 # NRC scored DF needs to be returned
 @app.route("/NRC_dict")
