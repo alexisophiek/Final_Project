@@ -6,6 +6,7 @@ from nltk_modeling import remove_noise
 from nltk_cleaning import clean_tweets, get_tweets, nltk_sentiment, generate_tweet_list
 from nrc_mashup import create_nrc, full_list
 import os
+import subprocess
 
 subprocess.call("bin/run_cloud_sql_proxy")
 
