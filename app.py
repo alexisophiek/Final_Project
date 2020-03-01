@@ -10,8 +10,8 @@ import subprocess
 
 # subprocess.call("bin/run_cloud_sql_proxy")
 
-# DB = os.environ.get("DBS_URL")
-# conn = psycopg2.connect(DB)
+DB = os.environ.get("DBS_URL")
+conn = psycopg2.connect(DB)
 
 # conn = psycopg2.connect(user = "twitter_app",
 #                                   password = "dataistwitter",
