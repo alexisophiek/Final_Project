@@ -10,13 +10,23 @@ import pandas as pd
 import os
 import subprocess
 import json
-
-subprocess.call("bin/run_cloud_sql_proxy")
-
-DB = os.environ.get("DBS_URL")
-# conn = psycopg2.connect(DB)
 from sqlalchemy import create_engine
-engine = create_engine(DB)
+''' 
+FOR HEROKU - UNCOMMENT
+'''
+# subprocess.call("bin/run_cloud_sql_proxy")
+# DB = os.environ.get("DBS_URL")
+# engine = create_engine(DB)
+app = Flask(__name__)
+'''
+FOR LOCAL - UNCOMMENT
+'''
+engine = create_engine("postgresql://postgres:dataisgreat@localhost:3306/postgres")
+# # subprocess.call("bin/run_cloud_sql_proxy"
+# DB = os.environ.get("DBS_URL")
+# # conn = psycopg2.connect(DB)
+# from sqlalchemy import create_engine
+# engine = create_engine(DB)
 # engine = create_engine("postgresql://postgres:dataisgreat@localhost:3306/postgres")
 # conn = psycopg2.connect(user = "twitter_app",
 #                                   password = "dataistwitter",
