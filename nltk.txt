@@ -1,4 +1,4 @@
-stem.wordnet
+wordnet
 WordNetLemmatizer
 FreqDist
 tokenize
