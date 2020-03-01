@@ -5,6 +5,8 @@ import pandas as pd
 # from nltk_modeling import remove_noise
 # from nltk_cleaning import clean_tweets, get_tweets, nltk_sentiment, generate_tweet_list
 # from nrc_mashup import create_nrc, full_list
+from new_NLTK_clean_and_classify import tweet_list
+from nrc_mashup import emolex_df, full_list
 import os
 import subprocess
 import json
@@ -40,6 +42,18 @@ def home():
     
 	return render_template('main.html', title='Twit Stack')
 
+@app.route("/dump")
+def dump():
+	return render_template('dump.html')
+
+@app.route("/NRC_lexicon")
+def nrcLexicon():
+	filepath = "NRC-Sentiment-Emotion-Lexicons/NRC-Emotion-Lexicon-v0.92/NRC-Emotion-Lexicon-Wordlevel-v0.92.txt"
+	emolex_df = pd.read_csv(filepath,  names=["word", "emotion", "association"], skiprows=45, sep='\t')
+	emolex_words = emolex_df.pivot(index='word', columns='emotion', values='association').reset_index()
+	emo = emolex_words.to_json()
+	return emo
+
 @app.route("/tweets")
 def tweets():
     try:
@@ -51,6 +65,23 @@ def tweets():
     except:
         print("Error!  It did not work")
 
+# NRC scored DF needs to be returned
+@app.route("/NRC_dict")
+def get_nrc():
+    emo_dict = full_list(tweet_list, emolex_df)
+    return emo_dict
+
+# # Returning Cleaned Tweets and NLTK sentiment
+# @app.route("/cleaned_tweets")
+# def get_cleaned():
+#     # tweet_list = get_tweets(conn)
+#     # cleaned = clean_tweets(tweet_list)
+#     # clean_sent = nltk_sentiment(cleaned)
+#     return clean_sent.to_json()
+
+# Word Cloud Return
+# @app.route("/word_cloud")
+# def get_words():
 
 # @app.route("/dump")
 # def dump():
@@ -74,38 +105,6 @@ def tweets():
 # # def get_cleaned():
 # # 	cleaned_tweets = cleaned.to_json()
 # # 	return cleaned_tweets
-
-# @app.route("/tweets")
-# def tweets():
-# 	return render_template('tweets.html')
-   
-
-# # NRC scored DF needs to be returned
-# @app.route("/nrc_dict")
-# def get_nrc():
-#     # tweet_list = get_tweets(conn)
-#     # cleaned = clean_tweets(tweet_list)
-#     # tweets = generate_tweet_list(cleaned)
-#     # emolex_df = create_nrc()
-
-#     emo_dict = full_list(tweets, emolex_df)
-#     return emo_dict.to_json()
-
-# # Returning Cleaned Tweets and NLTK sentiment
-# @app.route("/cleaned_tweets")
-# def get_cleaned():
-#     # tweet_list = get_tweets(conn)
-#     # cleaned = clean_tweets(tweet_list)
-#     # clean_sent = nltk_sentiment(cleaned)
-#     return clean_sent.to_json()
-
-# # Word Cloud Return
-# # @app.route("/word_cloud")
-# # def get_words():
-
-# # @app.route("/dump")
-# # def dump():
-# #     # return render_template('dump.html')
 
 # @app.route("/NRC_lexicon")
 # def nrcLexicon():
