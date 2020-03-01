@@ -1,5 +1,4 @@
 wordnet
-word_tokenize
 stopwords
 classify
 pos_tag
