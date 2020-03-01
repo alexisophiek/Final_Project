@@ -13,7 +13,7 @@ import json
 
 subprocess.call("bin/run_cloud_sql_proxy")
 
-# DB = os.environ.get("DBS_URL")
+DB = os.environ.get("DBS_URL")
 # conn = psycopg2.connect(DB)
 from sqlalchemy import create_engine
 engine = create_engine(DB)
