@@ -72,7 +72,7 @@ def get_tweets_for_model(cleaned_tokens_list):
         yield dict([token, True] for token in tweet_tokens)
 
 
-def get_our_tweets(conn):
+def get_our_tweets(cursor):
     tweet_list = []
     followers = []
     cursor.execute("select * from tweets")
@@ -84,9 +84,9 @@ def get_our_tweets(conn):
             if type(col) is dict:
                 tweet_list.append(col['text'])
                 followers.append(col['user']['followers_count'])
-    return tweet_list, folowers
+    return tweet_list, followers
 
-def clean_our_tweets():
+def clean_our_tweets(tweet_list):
     our_tweet_tokens = []
     for each in tweet_list:
         our_tweet_tokens.append(nltk.word_tokenize(each))
@@ -96,14 +96,16 @@ def clean_our_tweets():
     our_words = get_all_words(clean_tweet_tokens)
     return clean_tweet_tokens, our_words
 
-def classify_pickle():
+def classify_pickle(clean_tweet_tokens):
     loaded_model = pickle.load(open(f"notebook/my_classifier.sav", 'rb'))
 
     tweet = []
     sentiment = []
     for each in clean_tweet_tokens:
         tweet.append(each)
-        sentiment.append(loaded_model.classify(dict([token, True] for token in each)))                            
+        sentiment.append(loaded_model.classify(dict([token, True] for token in each))) 
+    cleaned_df = pd.DataFrame({"Tokens":tweet,"Emotions":sentiment})
+    return cleaned_df
 
 
 
