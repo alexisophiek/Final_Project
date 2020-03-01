@@ -12,19 +12,18 @@ import pandas as pd
 from nltk.corpus import stopwords
 from nltk import classify
 import pickle
+import requests
 stop_words = stopwords.words('english')
+# from sqlalchemy import create_engine
+# engine = create_engine(DB)
+# # engine = create_engine("postgresql://postgres:dataisgreat@localhost:3306/postgres")
 
-
-
-p="datasucks"
-conn = psycopg2.connect(user = "alexis",
-                                  password = f"{p}",
-                                  host = "127.0.0.1",
-                                  port = "3306",
-                                  database = "postgres")
-
-cursor = conn.cursor()
-
+def get_tweets():
+    tweets = []
+    response = requests.get("https://twitstackusa.herokuapp.com/tweets")
+    raw_tweets = response.json()
+    for tweet in raw_tweets:
+        tweets.append(tweet['data'])
 
 def lemmatize_sentence(tokens):
     lemmatizer = WordNetLemmatizer()
@@ -71,8 +70,7 @@ def get_all_words(cleaned_tokens_list):
 def get_our_tweets():
     tweet_list = []
     followers = []
-    cursor.execute("select * from tweets")
-    tweets = cursor.fetchall()
+    tweets = get_tweets()
     if not tweets:
         print("empty")
     for row in tweets:
