@@ -7,6 +7,7 @@ from nltk_cleaning import clean_tweets, get_tweets, nltk_sentiment, generate_twe
 from nrc_mashup import create_nrc, full_list
 import os
 
+subprocess.call("bin/run_cloud_sql_proxy")
 
 DB = os.environ.get("DBS_URL")
 conn = psycopg2.connect(DB)
