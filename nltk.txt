@@ -1,6 +1,5 @@
 wordnet
 stopwords
-classify
 pos_tag
 punkt
 pros_cons
