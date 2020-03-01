@@ -1,12 +1,13 @@
 from flask import Flask, render_template, redirect, make_response
 from flask import jsonify
-import psycopg2
+# import psycopg2
 import pandas as pd
 # from nltk_modeling import remove_noise
 # from nltk_cleaning import clean_tweets, get_tweets, nltk_sentiment, generate_tweet_list
 # from nrc_mashup import create_nrc, full_list
 import os
 import subprocess
+import json
 
 # subprocess.call("bin/run_cloud_sql_proxy")
 
@@ -14,6 +15,7 @@ DB = os.environ.get("DBS_URL")
 # conn = psycopg2.connect(DB)
 from sqlalchemy import create_engine
 engine = create_engine(DB)
+# engine = create_engine("postgresql://postgres:dataisgreat@localhost:3306/postgres")
 # conn = psycopg2.connect(user = "twitter_app",
 #                                   password = "dataistwitter",
 #                                   host = "127.0.0.1",
@@ -40,7 +42,7 @@ def home():
 
 @app.route("/tweets")
 def tweets():
-    data = pd.read_sql("select * from tweets;", con=engine).to_json(index=False,orient="table")
+    data = pd.read_sql("select * from tweets limit 5;", con=engine).to_json(index=False,orient="table")
     tweets = json.loads(data)
     
     return jsonify(tweets['data'])
