@@ -1,6 +1,5 @@
 wordnet
 stopwords
-pos_tag
 punkt
 pros_cons
 reuters
