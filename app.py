@@ -33,10 +33,6 @@ clean_sent = nltk_sentiment(cleaned)
 @app.route("/main")
 def home():
 	return render_template('main.html', title='Twit Stack')
-# @app.route("/tweets")
-# def tweets():
-# 	pass
-# 	# return render_template('main.html', title='Twit Stack')
 
 @app.route("/dump")
 def dump():
