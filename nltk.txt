@@ -1,5 +1,4 @@
 wordnet
-tokenize
 word_tokenize
 stopwords
 classify
