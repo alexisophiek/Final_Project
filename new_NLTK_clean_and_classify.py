@@ -106,7 +106,7 @@ def clean_our_tweets(tweet_list):
 
 
 def classify_pickle(clean_tweet_tokens):
-    loaded_model = pickle.load(open(f"notebooks/my_classifier.sav", 'rb'))
+    loaded_model = pickle.load(open(f"Notebooks/my_classifier.sav", 'rb'))
 
     tweet = []
     sentiment = []
