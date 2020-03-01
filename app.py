@@ -38,14 +38,13 @@ def home():
     
 	return render_template('main.html', title='Twit Stack')
 
-# @app.route("/tweets")
-# def tweets():
-#     cursor = conn.cursor()
-#     cursor.execute("select * from tweets")
-#     tweets = cursor.fetchall()x
+@app.route("/tweets")
+def tweets():
+    data = pd.read_sql("select * from tweets;", con=engine).to_json(index=False,orient="table")
+    tweets = json.loads(data)
     
-#     return pd.DataFrame(tweets).to_json()
-	# return render_template('main.html', title='Twit Stack')
+    return jsonify(tweets['data'])
+
 
 # @app.route("/dump")
 # def dump():
