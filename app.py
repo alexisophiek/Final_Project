@@ -77,6 +77,11 @@ def get_nrc():
     emo_dict = full_list(tweet_list, emolex_df)
     return emo_dict
 
+@app.route('/vis')
+def vis():
+
+	return render_template('visualization.html')
+
 # # Returning Cleaned Tweets and NLTK sentiment
 # @app.route("/cleaned_tweets")
 # def get_cleaned():
