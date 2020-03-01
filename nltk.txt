@@ -3,7 +3,6 @@ stopwords
 punkt
 pros_cons
 reuters
-hmm_treebank_pos_tagger
 maxent_treebank_pos_tagger
 universal_tagset
 punkt
