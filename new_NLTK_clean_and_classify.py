@@ -1,8 +1,8 @@
 import nltk
-# from nltk.tag import pos_tag
+from nltk.tag import pos_tag
 # from nltk.corpus import twitter_samples
 from nltk.stem.wordnet import WordNetLemmatizer
-# import re, string
+import re, string
 from nltk import FreqDist
 import random
 import psycopg2
@@ -11,6 +11,7 @@ from nltk.tokenize import word_tokenize
 import pandas as pd
 from nltk.corpus import stopwords
 from nltk import classify
+import pickle
 stop_words = stopwords.words('english')
 
 
@@ -67,12 +68,7 @@ def get_all_words(cleaned_tokens_list):
             yield token
 
 
-def get_tweets_for_model(cleaned_tokens_list):
-    for tweet_tokens in cleaned_tokens_list:
-        yield dict([token, True] for token in tweet_tokens)
-
-
-def get_our_tweets(cursor):
+def get_our_tweets():
     tweet_list = []
     followers = []
     cursor.execute("select * from tweets")
@@ -86,6 +82,7 @@ def get_our_tweets(cursor):
                 followers.append(col['user']['followers_count'])
     return tweet_list, followers
 
+
 def clean_our_tweets(tweet_list):
     our_tweet_tokens = []
     for each in tweet_list:
@@ -93,11 +90,11 @@ def clean_our_tweets(tweet_list):
     clean_tweet_tokens = []
     for each in our_tweet_tokens:
         clean_tweet_tokens.append(remove_noise(each, stop_words))
-    our_words = get_all_words(clean_tweet_tokens)
+        our_words = get_all_words(clean_tweet_tokens)
     return clean_tweet_tokens, our_words
 
 def classify_pickle(clean_tweet_tokens):
-    loaded_model = pickle.load(open(f"notebook/my_classifier.sav", 'rb'))
+    loaded_model = pickle.load(open(f"notebooks/my_classifier.sav", 'rb'))
 
     tweet = []
     sentiment = []
@@ -107,7 +104,12 @@ def classify_pickle(clean_tweet_tokens):
     cleaned_df = pd.DataFrame({"Tokens":tweet,"Emotions":sentiment})
     return cleaned_df
 
+print("Cleaning Utility is Ready")
 
-
-
+tweet_list, followers = get_our_tweets()
+print("Tweets Received")
+clean_tweet_tokens, our_words = clean_our_tweets(tweet_list)
+print("Cleaning Utilized on Tweets")
+cleaned_df = classify_pickle(clean_tweet_tokens)
+print("Tweets Classified")
 
