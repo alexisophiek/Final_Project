@@ -1,5 +1,6 @@
 
 from nltk.tokenize import word_tokenize
+from new_NLTK_clean_and_classify import tweet_list, clean_tweet_tokens, cleaned_df
 import pandas as pd
 
 def tokenize_this_list(text):
@@ -11,13 +12,6 @@ def tokenize_this_list(text):
         token_list.append(tokens)
         token_count.append(count)
     return token_count, token_list
-
-# tweet = generate_tweet_list()
-
-# token_count, token_list = tokenize_this_list(tweet)
-
-# print('Length of Token_Count =' + str(len(token_count)))
-# print('Length of Token_List =' + str(len(token_list)))
 
 # NRC
 def create_nrc():
@@ -59,9 +53,11 @@ def full_list(tweets, df):
     # return list
     return emo_list
 
-# emotion_list = full_list(token_list,emolex_df)
-               
-# print(emotion_list[:10])
+emolex_df = create_nrc()
+# print(emolex_df)
+
+
+
 
 
 
