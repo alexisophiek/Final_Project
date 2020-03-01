@@ -1,4 +1,3 @@
-tag
 stem.wordnet
 WordNetLemmatizer
 FreqDist
