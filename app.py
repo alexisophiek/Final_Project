@@ -6,6 +6,7 @@ from nrc_mashup import full_list
 import os
 import subprocess
 import json
+from wordCloud import get_word_cloud
 from sqlalchemy import create_engine
 
 
@@ -71,9 +72,10 @@ def get_cleaned():
 
 
 # Word Cloud Return
-# @app.route("/word_cloud")
-# def get_words():
-
+@app.route("/word_cloud")
+def get_words():
+    cloud = get_word_cloud()
+    return json.dumps(cloud)
 
 
 
