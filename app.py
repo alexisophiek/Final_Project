@@ -73,8 +73,8 @@ def get_words():
     my_list = []
     cloud = pd.read_sql("select * from word_cloud",con=engine).rename(columns={"word":"x"})
     for i,row in cloud.iterrows():
-        my_list.append(cloud.iloc[0].to_dict())
-    return json.dumps(my_list)
+        my_list.append(cloud.iloc[i].to_dict())
+    return str(my_list)
 
 # @app.route("/word_vis")
 # def get_word_vis():
