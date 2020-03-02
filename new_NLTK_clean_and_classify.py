@@ -22,7 +22,7 @@ from sqlalchemy import create_engine
 FOR HEROKU - UNCOMMENT
 '''
 DB = os.environ.get("DBS_URL")
-enginte = create_engine(DB)
+engine = create_engine(DB)
 
 '''
 FOR LOCAL USE - UNCOMMENT

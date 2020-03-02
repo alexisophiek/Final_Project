@@ -14,7 +14,7 @@ FOR HEROKU - UNCOMMENT
 '''
 subprocess.call("bin/run_cloud_sql_proxy")
 DB = os.environ.get("DBS_URL")
-enginte = create_engine(DB)
+engine = create_engine(DB)
 
 '''
 FOR LOCAL USE - UNCOMMENT
