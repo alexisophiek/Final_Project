@@ -13,7 +13,6 @@ from sqlalchemy import create_engine
 ''' 
 FOR HEROKU - UNCOMMENT
 '''
-subprocess.call("bin/run_cloud_sql_proxy")
 DB = os.environ.get("DBS_URL")
 engine = create_engine(DB)
 
