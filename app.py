@@ -58,6 +58,8 @@ def tweets():
 # NRC scored DF needs to be returned
 @app.route("/NRC_dict")
 def get_nrc():
+    filepath = "NRC-Sentiment-Emotion-Lexicons/NRC-Emotion-Lexicon-v0.92/NRC-Emotion-Lexicon-Wordlevel-v0.92.txt"
+    emolex_df = pd.read_csv(filepath,  names=["word", "emotion", "association"], skiprows=45, sep='\t')
     emo_dict = full_list(tweet_list, emolex_df)
     return emo_dict
 
