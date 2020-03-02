@@ -55,7 +55,7 @@ def tweets():
 
     return jsonify(tweets['data'])
 
-NRC scored DF needs to be returned
+# NRC scored DF needs to be returned
 @app.route("/NRC_dict")
 def get_nrc():
     emo_dict = full_list(tweet_list, emolex_df)
