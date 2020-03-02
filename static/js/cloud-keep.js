@@ -23,9 +23,9 @@ function generateWordCloud(data) {
 };
 
 d3.json("/word_cloud", function(data) {
-    var wordArray = Object.keys(data).map(i => data[i]);
-    console.log(wordArray);
-    generateWordCloud(wordArray)
+    // var wordArray = Object.keys(data).map(i => data[i]);
+    console.log(data);
+    generateWordCloud(data)
 });
 
 
