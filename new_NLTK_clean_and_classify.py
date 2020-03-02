@@ -13,23 +13,27 @@ import pickle
 import requests
 import time
 import json
+from pandas.io.json import json_normalize
 import os
 stop_words = stopwords.words('english')
 from sqlalchemy import create_engine
 
+''' 
+FOR HEROKU - UNCOMMENT
+'''
 DB = os.environ.get("DBS_URL")
-engine = create_engine(DB)
+enginte = create_engine(DB)
 
+'''
+FOR LOCAL USE - UNCOMMENT
+'''
 # engine = create_engine("postgresql://postgres:dataisgreat@localhost:3306/postgres")
 
-def get_tweets():
-    tweets = []
-    data = pd.read_sql("select * from tweets;", con=engine).to_json(index=False,orient="table")
-    raw_tweets = json.loads(data)['data']
-    for tweet in raw_tweets:
-        tweets.append(tweet['data'])
 
-    return tweets
+def get_tweets():
+    data = pd.read_sql("select * from tweets;", con=engine)
+  
+    return data['data'].to_list()
 
 
 def lemmatize_sentence(tokens):
@@ -83,14 +87,15 @@ def get_our_tweets():
     if not tweets:
         print("empty")
     for row in tweets:
-        for col in row:
-            if type(col) is dict:
-                tweet_list.append(col['text'])
-                followers.append(col['user']['followers_count'])
+        if type(row) is dict:
+            tweet_list.append(row['text'])
+            followers.append(row['user']['followers_count'])
+
     return tweet_list, followers
 
 
 def clean_our_tweets(tweet_list):
+    print(f"length of tweet list {len(tweet_list)}")
     our_tweet_tokens = []
     our_words = []
     for each in tweet_list:
@@ -106,14 +111,16 @@ def clean_our_tweets(tweet_list):
 
 def classify_pickle(clean_tweet_tokens):
     loaded_model = pickle.load(open(f"Notebooks/my_classifier.sav", 'rb'))
-
+    print("Loading model")
     tweet = []
     sentiment = []
+    print(f"length of cleaned tweet tokens: {len(clean_tweet_tokens)}")
     for each in clean_tweet_tokens:
         tweet.append(each)
         sentiment.append(loaded_model.classify(
             dict([token, True] for token in each)))
     cleaned_df = pd.DataFrame({"Tokens": tweet, "Emotions": sentiment})
+    print(f"Length in script: {len(cleaned_df)}")
     return cleaned_df
 
 
