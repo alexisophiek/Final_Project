@@ -13,17 +13,14 @@ from sqlalchemy import create_engine
 ''' 
 FOR HEROKU - UNCOMMENT
 '''
-subprocess.call("bin/run_cloud_sql_proxy")
-DB = os.environ.get("DBS_URL")
-engine = create_engine(DB)
+# subprocess.call("bin/run_cloud_sql_proxy")
 
-'''
-FOR LOCAL USE - UNCOMMENT
-'''
-# engine = create_engine("postgresql://postgres:dataisgreat@localhost:3306/postgres")
-'''
-NEED TO DO THE SAME IN new_NLTK_clean_and_classify and wordCloud
-'''
+
+# DB = os.environ.get("DBS_URL")
+# conn = psycopg2.connect(DB)
+
+engine = create_engine("postgresql://postgres:dataisgreat@localhost:3306/postgres")
+
 
 
 app = Flask(__name__)
