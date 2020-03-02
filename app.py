@@ -73,6 +73,7 @@ def get_words():
     my_list = []
     cloud = pd.read_sql("select * from word_cloud",con=engine).rename(columns={"word":"x"})
     for i,row in cloud.iterrows():
+        cloud['value'] = int(cloud['value'].iloc[i])
         my_list.append(cloud.iloc[i].to_dict())
     return jsonify(my_list)
 
