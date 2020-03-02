@@ -17,19 +17,21 @@ import os
 stop_words = stopwords.words('english')
 from sqlalchemy import create_engine
 
-DB = os.environ.get("DBS_URL")
-engine = create_engine(DB)
+# DB = os.environ.get("DBS_URL")
+# engine = create_engine(DB)
 
-# engine = create_engine("postgresql://postgres:dataisgreat@localhost:3306/postgres")
+
+
+
+engine = create_engine("postgresql://alexis:datasucks@localhost:3306/postgres")
+
 
 def get_tweets():
     tweets = []
-    data = pd.read_sql("select * from tweets;", con=engine).to_json(index=False,orient="table")
-    raw_tweets = json.loads(data)['data']
-    for tweet in raw_tweets:
-        tweets.append(tweet['data'])
+    data = pd.read_sql("select * from tweets;", con=engine)
+    return data['data'].to_list()
 
-    return tweets
+
 
 
 def lemmatize_sentence(tokens):
@@ -83,10 +85,9 @@ def get_our_tweets():
     if not tweets:
         print("empty")
     for row in tweets:
-        for col in row:
-            if type(col) is dict:
-                tweet_list.append(col['text'])
-                followers.append(col['user']['followers_count'])
+        if type(row) is dict:
+            tweet_list.append(row['text'])
+            followers.append(row['user']['followers_count'])
     return tweet_list, followers
 
 
@@ -104,6 +105,7 @@ def clean_our_tweets(tweet_list):
 
 
 
+
 def classify_pickle(clean_tweet_tokens):
     loaded_model = pickle.load(open(f"Notebooks/my_classifier.sav", 'rb'))
 
@@ -113,7 +115,7 @@ def classify_pickle(clean_tweet_tokens):
         tweet.append(each)
         sentiment.append(loaded_model.classify(
             dict([token, True] for token in each)))
-    cleaned_df = pd.DataFrame({"Tokens": tweet, "Emotions": sentiment})
+    cleaned_df = pd.DataFrame({"Tokens": tweet, "Sentiment": sentiment})
     return cleaned_df
 
 
