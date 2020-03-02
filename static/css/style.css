@@ -13,13 +13,12 @@ body {
 }
 
 
-  nav h2 {
+nav h2 {
     border-radius: 2px;
     position: relative;
     background: #e1ebed;
     height: 40px;
-    text-transform: uppercase;
-    color:#ca3838;
+    color:tomato;
     font-weight: 200;
     display: flex;
     flex: 1;
@@ -27,8 +26,8 @@ body {
     align-items: center;
     box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
     transition: all .4s;
-  }
-  
+}
+
   nav:hover h2{
     transform: translateY(-2px);
     box-shadow: 2px 2px 5px -1px rgba(0,0,0,.35);
@@ -82,12 +81,12 @@ body {
   
   nav ul li:hover {
     background: mediumorchid;
-    transition: background .45s;
+    transition: background .30s;
   }
   
   nav ul a {
     display: block;
-    color: ivory;
+    color: tomato;
     text-transform: lowercase;
     font-size: 18px;
     font-weight: 200;
@@ -98,11 +97,13 @@ body {
 
 .nav-bar {
     margin: auto;
-    margin-top: 40px;
-    position: relative;
+    margin-top: 0px;
+    position: sticky;
     width: 50vw;
     min-width: 320px;
-    height: 200px;
+    height: 60px;
+    top: 0;
+    z-index: 100;
   }
 
 
@@ -195,36 +196,41 @@ h1 {
 #first-section {
     background-color: #00abee59;
     margin: 0;
-
+    text-align: center;
 }
 
 #second-section {
-    background-color: #00e6ee42;
+    background-color: #e1ebed;
     margin: 0;
-
+    text-align: center;
 }
 
 #third-section {
-    background-color: #0067ee3a;
+    background-color: #00abee59;
     margin: 0;
-
+    text-align: center;
 }
 
 #fourth-section {
-    background-color: #00abee59;
+    background-color: #e1ebed;
     margin: 0;
-
+    text-align: center;
 }
 
 #fifth-section {
-    background-color: #00e6ee42;
+    background-color: #00abee59;
     margin: 0;
-
+    text-align: center;
 }
 
 .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     text-align: center;
-    padding: 75px 0 70px;
     background-color: #55acee;
+    font-size:14px;
 }
+
 

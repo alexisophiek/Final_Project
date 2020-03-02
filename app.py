@@ -29,9 +29,10 @@ engine = create_engine("postgresql://postgres:dataisgreat@localhost:3306/postgre
 def home():
 	return render_template('main.html', title='Twit Stack')
 
-# @app.route("/dump")
-# def dump():
-# 	return render_template('dump.html')
+@app.route("/model")
+def model():
+	return render_template('NLTK_Model_Slides.slides.html', title='Twit Model')
+
 
 @app.route("/NRC_lexicon")
 def nrcLexicon():
@@ -47,6 +48,8 @@ def tweets():
     tweets = json.loads(data)
     print(type(tweets))
     return tweets
+
+
 # NRC scored DF needs to be returned
 @app.route("/NRC_dict")
 def get_nrc():
