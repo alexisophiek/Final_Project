@@ -46,8 +46,8 @@ def nrcLexicon():
     filepath = "NRC-Sentiment-Emotion-Lexicons/NRC-Emotion-Lexicon-v0.92/NRC-Emotion-Lexicon-Wordlevel-v0.92.txt"
     emolex_df = pd.read_csv(filepath,  names=["word", "emotion", "association"], skiprows=45, sep='\t')
     emolex_words = emolex_df.pivot(index='word', columns='emotion', values='association').reset_index()
-	emo = emolex_df.to_json()
-	return emo
+    emo = emolex_df.to_json()
+    return emo
 
 @app.route("/tweets")
 def tweets():
