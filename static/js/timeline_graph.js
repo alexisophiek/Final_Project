@@ -1,12 +1,12 @@
 
 console.log('data is loading')
 
-function nrc(){
+function model_df(){
 
-	d3.json('/tweets', function(data){
+	d3.json('/cleaned_tweets', function(data){
 		console.log(data)
 		return data
 	})
 }
 
-nrc()
+model_df()
