@@ -78,7 +78,7 @@ def get_words():
 
 @app.route("/word_vis")
 def get_word_vis():
-    return return render_template('cloud.html', title='Word Cloud')
+    return render_template('cloud.html', title='Word Cloud')
 
 
 
