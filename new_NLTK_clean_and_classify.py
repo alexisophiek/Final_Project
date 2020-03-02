@@ -1,13 +1,10 @@
 import nltk
 from nltk.tag import pos_tag
-# from nltk.corpus import twitter_samples
 from nltk.stem.wordnet import WordNetLemmatizer
 import re
 import string
 from nltk import FreqDist
 import random
-import psycopg2
-# from textblob import TextBlob
 from nltk.tokenize import word_tokenize
 import pandas as pd
 from nltk.corpus import stopwords
@@ -20,10 +17,10 @@ import os
 stop_words = stopwords.words('english')
 from sqlalchemy import create_engine
 
-DB = os.environ.get("DBS_URL")
-engine = create_engine(DB)
-# engine = create_engine("postgresql://postgres:dataisgreat@localhost:3306/postgres")
+# DB = os.environ.get("DBS_URL")
+# engine = create_engine(DB)
 
+engine = create_engine("postgresql://postgres:dataisgreat@localhost:3306/postgres")
 
 def get_tweets():
     tweets = []
@@ -101,8 +98,10 @@ def clean_our_tweets(tweet_list):
     clean_tweet_tokens = []
     for each in our_tweet_tokens:
         clean_tweet_tokens.append(remove_noise(each, stop_words))
-        our_words = get_all_words(clean_tweet_tokens)
-    return clean_tweet_tokens, our_words
+        # our_words = get_all_words(clean_tweet_tokens)
+    # return clean_tweet_tokens, our_words
+    return clean_tweet_tokens
+
 
 
 def classify_pickle(clean_tweet_tokens):
@@ -119,10 +118,9 @@ def classify_pickle(clean_tweet_tokens):
 
 
 print("Cleaning Utility is Ready")
-
 tweet_list, followers = get_our_tweets()
 print("Tweets Received")
-clean_tweet_tokens, our_words = clean_our_tweets(tweet_list)
+clean_tweet_tokens = clean_our_tweets(tweet_list)
 print("Cleaning Utilized on Tweets")
 cleaned_df = classify_pickle(clean_tweet_tokens)
 print("Tweets Classified")
