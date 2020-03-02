@@ -27,5 +27,5 @@ d3.json("/word_cloud", function(words){
     console.log(words);
     var wordsArray = Object.keys(words).map(i => words[i]);
     console.log(wordsArray)
-    generateWordCloud(wordsArray);
+    // generateWordCloud(wordsArray);
 });
