@@ -77,9 +77,9 @@ def get_cleaned():
 #     cloud = get_word_cloud()
 #     return json.dumps(cloud)
 
-@app.route("/word_cloud")
-def get_word_vis():
-    return render_template('cloud.html', title='Word Cloud')
+# @app.route("/word_cloud")
+# def get_word_vis():
+#     return render_template('cloud.html', title='Word Cloud')
 
 
 
