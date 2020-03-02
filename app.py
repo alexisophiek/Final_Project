@@ -61,7 +61,7 @@ def get_nrc():
     filepath = "NRC-Sentiment-Emotion-Lexicons/NRC-Emotion-Lexicon-v0.92/NRC-Emotion-Lexicon-Wordlevel-v0.92.txt"
     emolex_df = pd.read_csv(filepath,  names=["word", "emotion", "association"], skiprows=45, sep='\t')
     emo_dict = full_list(tweet_list, emolex_df)
-    return emo_dict
+    return json.dumps(emo_dict, indent=4)
 
 # # Returning Cleaned Tweets and NLTK sentiment
 # @app.route("/cleaned_tweets")
