@@ -1,26 +1,6 @@
-.navigation__input,
-.u-visually-hidden {
-    border: 0;
-    clip: rect(0 0 0 0);
-    -webkit-clip-path: polygon(0 0, 0 0, 0 0);
-    clip-path: polygon(0 0, 0 0, 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-    white-space: nowrap
-}
-
-
 /*! normalize-scss | MIT/GPLv2 License | bit.ly/normalize-scss */
 
 html {
-    line-height: 1.15;
-    -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
-    box-sizing: border-box;
     height: 100%;
     overflow-x: hidden
 }
@@ -38,29 +18,24 @@ body {
     text-rendering: optimizeLegibility
 }
 
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-main,
-menu,
-nav,
+.site__header {
+    background-image: url(../images/header.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+  }
+
+
 section {
-    display: block
+    width: 100%;
+    height: 550px;
 }
 
 h1 {
     margin: .67em 0
-}
-
-
-a {
-    -webkit-text-decoration-skip: objects;
-    text-decoration: underline;
-    background-color: transparent
 }
 
 
@@ -126,20 +101,6 @@ ul {
     margin-top: 0
 }
 
-blockquote {
-    margin: 0
-}
-
-*,
-::after,
-::before {
-    box-sizing: inherit
-}
-
-body::before {
-    content: 'mobile';
-    display: none
-}
 
 
 .h1,
@@ -154,7 +115,8 @@ h3,
 h4,
 h5,
 h6 {
-    text-transform: uppercase
+    text-transform: uppercase;
+    color: #ffffff
 }
 
 .h1,
@@ -210,12 +172,7 @@ p.large {
 
 
 
-.site__header {
-    background-image: url(../images/header.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 100%
-  }
+
 
 
 .site__content {
@@ -288,7 +245,8 @@ p.large {
 .container {
     max-width: 320px;
     padding: 0 24px 0 40px;
-    margin: 0 auto
+    margin: 0 auto;
+
 }
 
 /* @media (min-width:768px) {
