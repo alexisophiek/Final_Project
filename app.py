@@ -53,6 +53,11 @@ def tweets():
     tweets = json.loads(data)
     return tweets
 
+@app.route("/new_tweets")
+def new_tweets():
+    data = pd.read_sql("select * from new_tweets", con=engine)
+    return data.to_json()
+
 # NRC scored DF needs to be returned
 @app.route("/NRC_dict")
 def get_nrc():
