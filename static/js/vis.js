@@ -37,7 +37,6 @@ var formattedTime = hours.toString().padStart(2, '0') + ':' +
 	}
 	console.log(dates)
 	// console.log(dateStrings)
-
 	return data
 	})
 	// return data
@@ -48,11 +47,14 @@ console.log(dates)
 
 // var x = data 
 
-var map = d3.select('#vis')
+var vis = d3.select('#vis')
+
+var y = data['data']['entities']
+console.log(y)
 
 var trace1 = {
   x: [],
-  y: [10, 15, 13, 17],
+  y: [],
   mode: 'markers',
   type: 'scatter'
 };
