@@ -13,13 +13,13 @@ from sqlalchemy import create_engine
 ''' 
 FOR HEROKU - UNCOMMENT
 '''
-# subprocess.call("bin/run_cloud_sql_proxy")
+subprocess.call("bin/run_cloud_sql_proxy")
 
 
-# DB = os.environ.get("DBS_URL")
-# conn = psycopg2.connect(DB)
+DB = os.environ.get("DBS_URL")
+conn = psycopg2.connect(DB)
 
-engine = create_engine("postgresql://postgres:dataisgreat@localhost:3306/postgres")
+# engine = create_engine("postgresql://postgres:dataisgreat@localhost:3306/postgres")
 
 
 
