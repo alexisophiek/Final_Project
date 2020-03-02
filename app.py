@@ -6,18 +6,18 @@ import pandas as pd
 # from nltk_cleaning import clean_tweets, get_tweets, nltk_sentiment, generate_tweet_list
 # from nrc_mashup import create_nrc, full_list
 from new_NLTK_clean_and_classify import tweet_list
-# from nrc_mashup import emolex_df, full_list
+from nrc_mashup import full_list
 import os
 import subprocess
 import json
 
-subprocess.call("bin/run_cloud_sql_proxy")
+# subprocess.call("bin/run_cloud_sql_proxy")
 
-DB = os.environ.get("DBS_URL")
+# DB = os.environ.get("DBS_URL")
 # conn = psycopg2.connect(DB)
 from sqlalchemy import create_engine
-engine = create_engine(DB)
-# engine = create_engine("postgresql://postgres:dataisgreat@localhost:3306/postgres")
+# engine = create_engine(DB)
+engine = create_engine("postgresql://postgres:dataisgreat@localhost:3306/postgres")
 # conn = psycopg2.connect(user = "twitter_app",
 #                                   password = "dataistwitter",
 #                                   host = "127.0.0.1",
@@ -28,7 +28,8 @@ engine = create_engine(DB)
 app = Flask(__name__)
 
 
-
+filepath = "NRC-Sentiment-Emotion-Lexicons/NRC-Emotion-Lexicon-v0.92/NRC-Emotion-Lexicon-Wordlevel-v0.92.txt"
+emolex_df = pd.read_csv(filepath,  names=["word", "emotion", "association"], skiprows=45, sep='\t')
 # cleaned_tweets = []
 
 # emolex_df = create_nrc()
@@ -48,10 +49,8 @@ def home():
 
 @app.route("/NRC_lexicon")
 def nrcLexicon():
-	filepath = "NRC-Sentiment-Emotion-Lexicons/NRC-Emotion-Lexicon-v0.92/NRC-Emotion-Lexicon-Wordlevel-v0.92.txt"
-	emolex_df = pd.read_csv(filepath,  names=["word", "emotion", "association"], skiprows=45, sep='\t')
 	emolex_words = emolex_df.pivot(index='word', columns='emotion', values='association').reset_index()
-	emo = emolex_words.to_json()
+	emo = emolex_df.to_json()
 	return emo
 
 @app.route("/tweets")
@@ -61,11 +60,11 @@ def tweets():
 
     return jsonify(tweets['data'])
 
-# NRC scored DF needs to be returned
-# @app.route("/NRC_dict")
-# def get_nrc():
-#     emo_dict = full_list(tweet_list, emolex_df)
-#     return emo_dict
+NRC scored DF needs to be returned
+@app.route("/NRC_dict")
+def get_nrc():
+    emo_dict = full_list(tweet_list, emolex_df)
+    return emo_dict
 
 # # Returning Cleaned Tweets and NLTK sentiment
 # @app.route("/cleaned_tweets")
