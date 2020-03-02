@@ -22,7 +22,7 @@ FOR LOCAL USE - UNCOMMENT
 '''
 # engine = create_engine("postgresql://postgres:dataisgreat@localhost:3306/postgres")
 '''
-NEED TO DO THE SAME IN new_NLTK_clean_and_classify
+NEED TO DO THE SAME IN new_NLTK_clean_and_classify and wordCloud
 '''
 
 
@@ -77,7 +77,9 @@ def get_words():
     cloud = get_word_cloud()
     return json.dumps(cloud)
 
-
+@app.route("/word_vis")
+def get_word_vis():
+    return render_template('cloud.html', title='Word Cloud')
 
 
 
