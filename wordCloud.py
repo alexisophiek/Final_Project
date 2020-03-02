@@ -12,13 +12,13 @@ from sqlalchemy import create_engine
 ''' 
 FOR HEROKU - UNCOMMENT
 '''
-# DB = os.environ.get("DBS_URL")
-# engine = create_engine(DB)
+DB = os.environ.get("DBS_URL")
+engine = create_engine(DB)
 
 '''
 FOR LOCAL USE - UNCOMMENT
 '''
-engine = create_engine("postgresql://<DB_USER>:<DB_PASSWORD>@localhost:3306/postgres")
+# engine = create_engine("postgresql://<DB_USER>:<DB_PASSWORD>@localhost:3306/postgres")
 
 
 def get_word_cloud():
