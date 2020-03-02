@@ -1,18 +1,21 @@
+!DOCTYPE html>
 <html>
-  <head>
-    
-  </head>
+ <head>
+  <title>JavaScript Tag Cloud Chart</title>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
+  <style>
+    html, body, #container {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    }
+  </style> 
+ </head>
   <body>
-    <div id="chart"></div>
-    
+   <div id="container"></div>
+    <script src="../static/js/cloud.js">    </script>
   </body>
-  <footer>
-    
-    <!-- Load d3.js -->
-    <script src="https://d3js.org/d3.v4.js"></script>
-
-    <!-- Load d3-cloud -->
-    <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
-    <script src="../static/js/cloud.js"></script>
-  </footer>
 </html>
