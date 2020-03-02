@@ -7,13 +7,17 @@ import os
 import subprocess
 import json
 
-# subprocess.call("bin/run_cloud_sql_proxy")
+''' 
+FOR HEROKU - UNCOMMENT
+'''
+subprocess.call("bin/run_cloud_sql_proxy")
 
-# DB = os.environ.get("DBS_URL")
+
+DB = os.environ.get("DBS_URL")
 # conn = psycopg2.connect(DB)
 from sqlalchemy import create_engine
-# engine = create_engine(DB)
-engine = create_engine("postgresql://postgres:dataisgreat@localhost:3306/postgres")
+engine = create_engine(DB)
+# engine = create_engine("postgresql://postgres:dataisgreat@localhost:3306/postgres")
 # conn = psycopg2.connect(user = "twitter_app",
 #                                   password = "dataistwitter",
 #                                   host = "127.0.0.1",
@@ -22,11 +26,6 @@ engine = create_engine("postgresql://postgres:dataisgreat@localhost:3306/postgre
 
 # from flask import jsonify
 app = Flask(__name__)
-
-''' 
-FOR HEROKU - UNCOMMENT
-'''
-# subprocess.call("bin/run_cloud_sql_proxy")
 
 
 # cleaned_tweets = []
