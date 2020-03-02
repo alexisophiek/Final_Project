@@ -6,21 +6,19 @@ import re
 from nltk.tokenize import word_tokenize
 import os
 from political_words import words
-
 stopwords = set(stopwords.words('english'))
-
 from sqlalchemy import create_engine
 
 ''' 
 FOR HEROKU - UNCOMMENT
 '''
-DB = os.environ.get("DBS_URL")
-engine = create_engine(DB)
+# DB = os.environ.get("DBS_URL")
+# engine = create_engine(DB)
 
 '''
 FOR LOCAL USE - UNCOMMENT
 '''
-# engine = create_engine("postgresql://postgres:dataisgreat@localhost:3306/postgres")
+engine = create_engine("postgresql://alexis:datasucks@localhost:3306/postgres")
 
 
 def get_word_cloud():
@@ -85,3 +83,6 @@ def get_word_cloud():
         my_list.append(my_dict)
 
     return my_list
+
+
+my_list = get_word_cloud() 

@@ -6,7 +6,7 @@ from nrc_mashup import full_list
 import os
 import subprocess
 import json
-# from wordCloud import get_word_cloud
+from wordCloud import my_list
 from sqlalchemy import create_engine
 
 
@@ -56,7 +56,6 @@ def new_tweets():
     data = pd.read_sql("select * from new_tweets", con=engine)
     return data.to_json()
 
-# NRC scored DF needs to be returned
 @app.route("/NRC_dict")
 def get_nrc():
     emo_dict = pd.read_sql("select * from emotions",con=engine)
@@ -69,14 +68,13 @@ def get_cleaned():
 
 
 # Word Cloud Return
-# @app.route("/word_cloud")
-# def get_words():
-#     cloud = get_word_cloud()
-#     return json.dumps(cloud)
-
 @app.route("/word_cloud")
 def get_word_vis():
-    return render_template('cloud.html', title='Word Cloud')
+    return json.dumps(my_list)
+
+# @app.route("/word_cloud")
+# def get_word_vis():
+#     return render_template('cloud.html', title='Word Cloud')
 
 
 
