@@ -75,7 +75,7 @@ def get_cleaned():
 @app.route("/word_cloud")
 def get_words():
     cloud = pd.read_sql("select * from word_cloud",con=engine).rename(columns={"word":"x"})
-    return cloud.to_json()
+    return cloud.to_dict()
 
 @app.route("/word_vis")
 def get_word_vis():
