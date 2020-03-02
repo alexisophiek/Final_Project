@@ -13,6 +13,54 @@ body {
 }
 
 
+/* @font-face {
+  font-family: "Bryant-Condensed";
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  src: url(../fonts/BryantCondensed/BryantCondensed-Light.woff) format("woff")
+}
+
+@font-face {
+  font-family: "Bryant-Condensed";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url(../fonts/BryantCondensed/BryantCondensed-Regular.woff) format("woff")
+}
+
+@font-face {
+  font-family: "Bryant-Condensed";
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url(../fonts/BryantCondensed/BryantCondensed-Medium.woff) format("woff")
+}
+
+@font-face {
+  font-family: "Bryant-Condensed";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url(../fonts/BryantCondensed/BryantCondensed-Bold.woff) format("woff")
+}
+
+@font-face {
+  font-family: "Bryant-Condensed";
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+  src: url(../fonts/BryantPro/BryantPro-RegularItalic.woff) format("woff")
+} */
+
+#container {
+  background-color:transparent;
+  height:450px;
+  width:700px;
+  justify-content: center;
+  align-items: center;}
+
+
 nav h2 {
     border-radius: 2px;
     position: relative;
@@ -112,45 +160,6 @@ section {
     height: 550px;
 }
 
-@font-face {
-    font-family: "Bryant-Condensed";
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-    src: url(../fonts/BryantCondensed/BryantCondensed-Light.woff) format("woff")
-}
-
-@font-face {
-    font-family: "Bryant-Condensed";
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-    src: url(../fonts/BryantCondensed/BryantCondensed-Regular.woff) format("woff")
-}
-
-@font-face {
-    font-family: "Bryant-Condensed";
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-    src: url(../fonts/BryantCondensed/BryantCondensed-Medium.woff) format("woff")
-}
-
-@font-face {
-    font-family: "Bryant-Condensed";
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-    src: url(../fonts/BryantCondensed/BryantCondensed-Bold.woff) format("woff")
-}
-
-@font-face {
-    font-family: "Bryant-Condensed";
-    font-weight: 400;
-    font-style: italic;
-    font-display: swap;
-    src: url(../fonts/BryantPro/BryantPro-RegularItalic.woff) format("woff")
-}
 
 h1,
 h2,

@@ -1,7 +1,12 @@
-<html lang="en">
+<html lang="en-US">
 
 <head>
     <link rel="stylesheet" href="../static/css/style.css">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
+    <meta charset="utf-8">
+    {% include 'dependencies.html' %}
 </head>
 
 <body>
@@ -14,9 +19,9 @@
         <ul>
             <li><a href="/model">NLTK Model</a></li>
             <li><a href="https://github.com/alexisophiek/Final_Project">Twit Stack GitHub</a></li>
-            <li><a href="#second-section">NRC Stuff</a></li>
+            <!-- <li><a href="#second-section">NRC Stuff</a></li>
             <li><a href="#third-section">More Visuals</a></li>
-            <li><a href="#fourth-section">Analysis</a></li>
+            <li><a href="#fourth-section">Analysis</a></li> -->
             <li><a href="/main">Back to the Top</a></li>
         </ul>
     </nav>
@@ -30,8 +35,8 @@
                 </section>
                 <section id="second-section" class="grid grid--02-our-stuff">
                     <div>
-                        <h2 class="h1">NRC Table and VIS</h2>
-                        <svg id="nrc_play?"></svg>
+                        <h2 class="h1">Cleaned and Classified Tweets</h2>
+                        <div id="classified-tweets"></div>
 
                     </div>
                 </section>
@@ -39,16 +44,13 @@
                     <div>
                         <h2 class="h1">Visualizations</h2>
                         <h3 class="h2">Super Tuesday!</h3>
-                        <svg id="wordcloud"></svg>
-                        <svg id="timeline?"></svg>
-
+                            <div id="container"></div>
                     </div>
                 </section>
                 <section id="fourth-section" class="grid grid--04-our-analysis">
                     <div>
                         <h2 class="h1">Our Analysis</h2>
                         <h3 class="h2">Interesting enough</h3>
-                        <!-- Word Bag type Vis and other -->
                     </div>
                 </section>
                 <section id="fifth-section" class="grid grid--05-most-popular-tweets">
@@ -63,12 +65,11 @@
         </div>
         </div>
     </main>
-    </div>
     <div class="site__footer">
         <footer class="footer">
             <p class="h4 u-text-center">A University of Oregon Data Analytics Boot Camp Project, 2020</p>
-            <script src="#"></script>
-            <script src="#"></script>
+            <script src="static/js/get_tweets.js"></script>
+            <script src="static/js/cloud.js"></script>
             <script src="#"></script>
             <script src="#"></script>
         </footer>
