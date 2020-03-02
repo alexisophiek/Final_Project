@@ -22,15 +22,21 @@ function generateWordCloud(data) {
     })
 };
 
+d3.json("/word_cloud", function(data) {
+    var wordArray = Object.keys(data).map(i => data[i]);
+    console.log(wordArray);
+    generateWordCloud(wordArray)
+});
 
-function yourCloud(){
-    d3.json("/word_cloud", function(data) {
-        var wordArray = Object.keys(data).map(i => data[i])
-        console.log(wordArray)
-        generateWordCloud(wordArray)
-    })
-};
 
-var makeTable = yourCloud()
+// function yourCloud(){
+//     d3.json("/word_cloud", function(data) {
+//         var wordArray = Object.keys(data).map(i => data[i])
+//         console.log(wordArray)
+//         generateWordCloud(wordArray)
+//     })
+// };
+
+// var makeTable = yourCloud()
 
 
