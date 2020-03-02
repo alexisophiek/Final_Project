@@ -52,9 +52,13 @@ def get_nrc():
     emo_dict = full_list(tweet_list, emolex_df)
     return jsonify({emo_dict: [emo_dict]})
 
-# # Word Cloud Return
-# # @app.route("/word_cloud")
-# # def get_words():
+
+@app.route('/vis')
+def vis():
+
+	return render_template('visualization.html')
+
+
 
 
 
