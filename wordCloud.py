@@ -4,6 +4,7 @@ from nltk.corpus import stopwords
 import string
 import re
 from nltk.tokenize import word_tokenize
+import os
 from political_words import words
 
 stopwords = set(stopwords.words('english'))
