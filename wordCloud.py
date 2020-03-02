@@ -1,23 +1,27 @@
-# import datetime as dt
 import pandas as pd
-# import wordcloud
-# import matplotlib.pyplot as plt
-# import json
 import nltk
 from nltk.corpus import stopwords
 import string
 import re
 from nltk.tokenize import word_tokenize
 from political_words import words
-# nltk.download('wordnet')
-# nltk.download('averaged_perceptron_tagger')
-# nltk.download('punkt')
-# nltk.download('stopwords')
+
 stopwords = set(stopwords.words('english'))
 
 from sqlalchemy import create_engine
 
-engine = create_engine("postgresql://postgres:dataisgreat@localhost:3306/postgres")
+''' 
+FOR HEROKU - UNCOMMENT
+'''
+subprocess.call("bin/run_cloud_sql_proxy")
+DB = os.environ.get("DBS_URL")
+engine = create_engine(DB)
+
+'''
+FOR LOCAL USE - UNCOMMENT
+'''
+# engine = create_engine("postgresql://postgres:dataisgreat@localhost:3306/postgres")
+
 
 def get_word_cloud():
     data =pd.read_sql("select * from new_tweets",con=engine)
