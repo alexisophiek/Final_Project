@@ -6,7 +6,7 @@ from nrc_mashup import full_list
 import os
 import subprocess
 import json
-from wordCloud import get_word_cloud
+# from wordCloud import get_word_cloud
 from sqlalchemy import create_engine
 
 
