@@ -9,25 +9,29 @@ function yourTweets(){
 	console.log('running tweets func . . . ')
 
 	d3.json('/tweets', function(data){
-		console.log(data)
+
+		expected = data['data'][1]
+		console.log(typeof(expected))
+		console.log(typeof(expected['data']))
+		console.log(expected)
+
+		unexpected = data['data'][2503]
+		console.log(typeof(unexpected))
+		console.log(typeof(unexpected['data']))
+		console.log(unexpected)
 		// console.log(data.type())
 		// return data
-
 
 	for (i = 0; i < data.length; i++) {
 		var time = data[i]['data']['timestamp_ms']
 		time = parseInt(time * 1000)
-
 		var dateObj = new Date(time * 1000)
 
-var hours = dateObj.getUTCHours(); 
- 
+var hours = dateObj.getUTCHours();
 // Get minutes part from the timestamp 
 var minutes = dateObj.getUTCMinutes(); 
- 
 // Get seconds part from the timestamp 
-var seconds = dateObj.getUTCSeconds(); 
- 
+var seconds = dateObj.getUTCSeconds();
 var formattedTime = hours.toString().padStart(2, '0') + ':' +  
                 minutes.toString().padStart(2, '0') + ':' +  
                 seconds.toString().padStart(2, '0'); 
@@ -45,12 +49,8 @@ var formattedTime = hours.toString().padStart(2, '0') + ':' +
 yourTweets()
 console.log(dates)
 
-// var x = data 
-
 var vis = d3.select('#vis')
 
-var y = data['data']['entities']
-console.log(y)
 
 var trace1 = {
   x: [],

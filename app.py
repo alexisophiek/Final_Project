@@ -52,8 +52,7 @@ def nrcLexicon():
 def tweets():
     data = pd.read_sql("select * from tweets", con=engine).to_json(index=False,orient="table")
     tweets = json.loads(data)
-
-    return jsonify(tweets['data'])
+    return tweets
 
 # NRC scored DF needs to be returned
 @app.route("/NRC_dict")
