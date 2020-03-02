@@ -72,14 +72,14 @@ def get_cleaned():
 
 
 # Word Cloud Return
-# @app.route("/word_cloud")
-# def get_words():
-#     cloud = get_word_cloud()
-#     return json.dumps(cloud)
+@app.route("/word_cloud")
+def get_words():
+    cloud = pd.read_sql("select * from word_cloud",con=engine).rename(column={"word":"x"})
+    return json.dumps(cloud)
 
-# @app.route("/word_cloud")
-# def get_word_vis():
-#     return render_template('cloud.html', title='Word Cloud')
+# @app.route("/word_vis")
+def get_word_vis():
+    return render_template('cloud.html', title='Word Cloud')
 
 
 
