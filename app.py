@@ -17,7 +17,7 @@ subprocess.call("bin/run_cloud_sql_proxy")
 
 
 DB = os.environ.get("DBS_URL")
-conn = psycopg2.connect(DB)
+engine = create_engine(DB)
 
 # engine = create_engine("postgresql://postgres:dataisgreat@localhost:3306/postgres")
 
