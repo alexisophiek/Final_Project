@@ -103,8 +103,6 @@ def clean_our_tweets(tweet_list):
     clean_tweet_tokens = []
     for each in our_tweet_tokens:
         clean_tweet_tokens.append(remove_noise(each, stop_words))
-        # our_words = get_all_words(clean_tweet_tokens)
-    # return clean_tweet_tokens, our_words
     return clean_tweet_tokens
 
 
