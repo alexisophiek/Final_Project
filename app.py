@@ -71,10 +71,9 @@ def get_cleaned():
 @app.route("/word_cloud")
 def get_words():
     my_list = []
-    cloud = pd.read_sql("select * from word_cloud",con=engine).rename(columns={"word":"x"})
+    cloud = pd.read_sql("select * from word_cloud",con=engine)
     for i,row in cloud.iterrows():
-        cloud['value'] = int(cloud['value'].iloc[i])
-        my_list.append(cloud.iloc[i].to_dict())
+        my_list.append({'x':cloud['word'].iloc[i],'value':int(cloud['value'].iloc[i]), 'category':cloud['category'].iloc[i]})
     return jsonify(my_list)
 
 # @app.route("/word_vis")
