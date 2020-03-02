@@ -76,13 +76,10 @@ def get_words():
         my_list.append({'x':cloud['word'].iloc[i],'value':int(cloud['value'].iloc[i]), 'category':cloud['category'].iloc[i]})
     return jsonify(my_list)
 
-# @app.route("/word_vis")
-# def get_word_vis():
-#     return json.dumps(my_list)
+@app.route("/word_vis")
+def get_word_vis():
+    return return render_template('cloud.html', title='Word Cloud')
 
-# @app.route("/word_cloud")
-# def get_word_vis():
-#     return render_template('cloud.html', title='Word Cloud')
 
 
 
