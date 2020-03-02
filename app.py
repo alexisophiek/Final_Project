@@ -2,26 +2,33 @@ from flask import Flask, render_template, redirect, make_response
 from flask import jsonify
 import pandas as pd
 from new_NLTK_clean_and_classify import tweet_list
-from nrc_mashup import emolex_df, full_list
+from nrc_mashup import full_list
 import os
 import subprocess
 import json
-from sqlalchemy import create_engine
 
 ''' 
 FOR HEROKU - UNCOMMENT
 '''
-# subprocess.call("bin/run_cloud_sql_proxy")
+subprocess.call("bin/run_cloud_sql_proxy")
 
-# DB = os.environ.get("DBS_URL")
-# engine = create_engine(DB)
 
+DB = os.environ.get("DBS_URL")
+# conn = psycopg2.connect(DB)
+from sqlalchemy import create_engine
+engine = create_engine(DB)
+# engine = create_engine("postgresql://postgres:dataisgreat@localhost:3306/postgres")
+# conn = psycopg2.connect(user = "twitter_app",
+#                                   password = "dataistwitter",
+#                                   host = "127.0.0.1",
+#                                   port = "5432",
+#                                   database = "postgres")
+
+# from flask import jsonify
 app = Flask(__name__)
 
-'''
-FOR LOCAL - UNCOMMENT
-'''
-engine = create_engine("postgresql://postgres:dataisgreat@localhost:3306/postgres")
+
+# cleaned_tweets = []
 
 
 @app.route("/")
@@ -36,11 +43,11 @@ def model():
 
 @app.route("/NRC_lexicon")
 def nrcLexicon():
-	filepath = "NRC-Sentiment-Emotion-Lexicons/NRC-Emotion-Lexicon-v0.92/NRC-Emotion-Lexicon-Wordlevel-v0.92.txt"
-	emolex_df = pd.read_csv(filepath,  names=["word", "emotion", "association"], skiprows=45, sep='\t')
-	emolex_words = emolex_df.pivot(index='word', columns='emotion', values='association').reset_index()
-	emo = emolex_words.to_json()
-	return emo
+    filepath = "NRC-Sentiment-Emotion-Lexicons/NRC-Emotion-Lexicon-v0.92/NRC-Emotion-Lexicon-Wordlevel-v0.92.txt"
+    emolex_df = pd.read_csv(filepath,  names=["word", "emotion", "association"], skiprows=45, sep='\t')
+    emolex_words = emolex_df.pivot(index='word', columns='emotion', values='association').reset_index()
+    emo = emolex_df.to_json()
+    return emo
 
 @app.route("/tweets")
 def tweets():
@@ -50,19 +57,27 @@ def tweets():
     return tweets
 
 
+    return jsonify(tweets['data'])
+
 # NRC scored DF needs to be returned
 @app.route("/NRC_dict")
 def get_nrc():
+    filepath = "NRC-Sentiment-Emotion-Lexicons/NRC-Emotion-Lexicon-v0.92/NRC-Emotion-Lexicon-Wordlevel-v0.92.txt"
+    emolex_df = pd.read_csv(filepath,  names=["word", "emotion", "association"], skiprows=45, sep='\t')
     emo_dict = full_list(tweet_list, emolex_df)
-    return jsonify({emo_dict: [emo_dict]})
+    return json.dumps(emo_dict, indent=4)
 
+# # Returning Cleaned Tweets and NLTK sentiment
+# @app.route("/cleaned_tweets")
+# def get_cleaned():
+#     # tweet_list = get_tweets(conn)
+#     # cleaned = clean_tweets(tweet_list)
+#     # clean_sent = nltk_sentiment(cleaned)
+#     return clean_sent.to_json()
 
-@app.route('/vis')
-def vis():
-
-	return render_template('visualization.html')
-
-
+# Word Cloud Return
+# @app.route("/word_cloud")
+# def get_words():
 
 
 
