@@ -17,7 +17,7 @@ function generateWordCloud(data) {
     chart.background().fill("transparent");
     
     // display the word cloud chart
-    chart.container("container")
+    chart.container("word-cloud")
     chart.draw()
     })
 };
