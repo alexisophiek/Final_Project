@@ -16,7 +16,6 @@ FOR HEROKU - UNCOMMENT
 
 
 # DB = os.environ.get("DBS_URL")
-# conn = psycopg2.connect(DB)
 
 engine = create_engine("postgresql://alexis:datasucks@localhost:3306/postgres")
 
