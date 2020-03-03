@@ -38,7 +38,11 @@ Tools for cleaning: removing noise, removing stop words, tokenizing, POS tagging
 NLTK has its own set of corpora called twitter_samples.  For the purpose of modeling, they also supply a positive_tweets.json and a negtaive_tweets.json.
 We used NaivesBayes classifier.
 
+Beginning with an unknown size of the dataset and knowning the potential to grow, we considered a cloud based storage.  This allowed for larger database size and for all of us to access the same data without sync issues.  We chose to use Google Cloud SQL.  This took a little work to set up, as additional tools were needed.  [Google Cloud SDK](https://cloud.google.com/sdk) had to be downloaded, then [Google Cloud SQL Proxy](https://cloud.google.com/sql/docs/postgres/quickstart-proxy-test) had to be run in the SDK terminal.
 
+To set up the database, first we needed a project in the Google Platform.  After starting a project, collaberators can be added.  Then a SQL instance needs to be set up.  We chose to use a PostgreSQL instance.  A database was set up and users added.  We had to also add a service account to allow Heroku to connect.
+
+Connecting to Google Cloud SQL in Heroku proved to be more challenging than expected.  We had to add a buildpack for Cloud SQL Proxy.  We started with [emartech's](https://elements.heroku.com/buildpacks/emartech/heroku-buildpack-cloud-sql-proxy) build, but had issues.  After digging around, we found another buildpack to try with a slightly different approach.  [Daniel Zambelli's](https://elements.heroku.com/buildpacks/danielzambelli/heroku-buildpack-cloud-sql-proxy) buildpack used encoded credentials.  After trying different buildpacks and different ports for the connection, we had to add another piece (`subprocess.call("bin/run_cloud_sql_proxy")`) and eventually we were able to get the connection working.
 
 
 
