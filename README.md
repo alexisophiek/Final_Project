@@ -68,7 +68,7 @@ Twitter API Access:
 * Save Model
 * Use Model to Classify #Election2020 Tweets
 
-### Step Three:
+### Step Four:
 
 * End Points with all Necessary Data
 * Back Fill Data with Twitter Search API, before launching Stream (3/1)
