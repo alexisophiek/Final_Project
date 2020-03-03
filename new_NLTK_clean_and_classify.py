@@ -92,7 +92,6 @@ def get_our_tweets():
 
 
 def clean_our_tweets(tweet_list):
-    print(f"length of tweet list {len(tweet_list)}")
     our_tweet_tokens = []
     our_words = []
     for each in tweet_list:
@@ -109,7 +108,6 @@ def classify_pickle(clean_tweet_tokens):
     print("Loading model")
     tweet = []
     sentiment = []
-    print(f"length of cleaned tweet tokens: {len(clean_tweet_tokens)}")
     for each in clean_tweet_tokens:
         tweet.append(each)
         sentiment.append(loaded_model.classify(
