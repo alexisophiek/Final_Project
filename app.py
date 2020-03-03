@@ -64,10 +64,7 @@ def get_nrc():
     emo_dict = pd.read_sql("select * from emotions",con=engine)
     return emo_dict.to_json()
 
-# Modeled DF from Notebook
-# @app.route("/cleaned_tweets")
-# def get_cleaned():
-#     return cleaned_df.to_html()
+
 @app.route("/cleaned_tweets")
 def get_cleaned():
     clean_list = []
