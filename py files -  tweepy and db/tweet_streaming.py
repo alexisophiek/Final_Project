@@ -29,12 +29,12 @@ class MyStreamListener(tweepy.StreamListener):
         print((place, username, tweet))
         self.num_tweets += 1
         if self.num_tweets < 500:
-            cursor.execute('INSERT INTO twitter_feed (date, user_location, user_id, text, metadata) VALUES (%s,%s,%s,%s,%s);', (dt.strptime(
-                date, '%a %b %d %H:%M:%S %z %Y').strftime('%Y-%m-%d %H:%M:%S'), place, tweet, username, metadata))
+            # cursor.execute('INSERT INTO twitter_feed (date, user_location, user_id, text, metadata) VALUES (%s,%s,%s,%s,%s);', (dt.strptime(
+            #     date, '%a %b %d %H:%M:%S %z %Y').strftime('%Y-%m-%d %H:%M:%S'), place, tweet, username, metadata))
 
-            cursor.execute('INSERT INTO tweets (data) VALUES (%s);',
-                           (json.dumps(all_data),))
-            conn.commit()
+            # cursor.execute('INSERT INTO tweets (data) VALUES (%s);',
+            #                (json.dumps(all_data),))
+            # conn.commit()
 
             print(self.num_tweets)
             print((username, tweet))
