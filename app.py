@@ -12,12 +12,13 @@ from sqlalchemy import create_engine
 ''' 
 FOR HEROKU - UNCOMMENT
 '''
-# subprocess.call("bin/run_cloud_sql_proxy")
+subprocess.call("bin/run_cloud_sql_proxy")
 
 
-# DB = os.environ.get("DBS_URL")
+DB = os.environ.get("DBS_URL")
+engine=create_engine(DB)
 
-engine = create_engine("postgresql://<DB_USER>:<DB_PASSWORD>@localhost:3306/postgres")
+# engine = create_engine("postgresql://<DB_USER>:<DB_PASSWORD>@localhost:3306/postgres")
 
 
 
