@@ -21,6 +21,5 @@ function generateWordCloud(data) {
 };
 
 d3.json("/word_cloud", function(data) {
-    console.log(data)
     generateWordCloud(data)
 });
