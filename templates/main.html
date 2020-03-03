@@ -2,17 +2,7 @@
 
 <head>
     <link rel="stylesheet" href="../static/css/style.css">
-    <script src="https://d3js.org/d3.v5.min.js"></script>
-    <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
-    <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
-    <style>
-        html, body, #word-cloud {
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        }
-      </style>
+
     <meta charset="utf-8">
     {% include 'dependencies.html' %}
 </head>
@@ -22,7 +12,7 @@
         <img src="../static/images/header.png" style="width: 100%; height: auto;">
     </header>
     <nav class="nav-bar">
-        <h2>Menu</h2>
+        <h2 id="menu">Menu</h2>
         <input id="toggle" type="checkbox" checked>
         <ul>
             <li><a href="/model">NLTK Model</a></li>
@@ -36,15 +26,24 @@
                 <section id="first-section" class="grid grid--01-our-mission">
                     <div>
                         <h2 class="h1">Our Goal</h2>
-                        <h3 class="h2">What's on America's mind 7 Days Prior to Super Tuesday?</h3>
+                        <ul>                        
+                            <h3 class="h2">Connect to Twitter Streaming API</h3>
+                            <h3 class="h2">View all #Election2020 Tweets</h3>
+                            <h3 class="h2">Run Lists thru a Classifer</h3>
+                            <h3 class="h2">Create Visualizations That Auto-Update</h3>
+                        </ul>
+                        <img src="https://youprogrammer.com/wp-content/uploads/2018/11/twitter-gif-download.gif">
 
                     </div>
                 </section>
                 <section id="second-section" class="grid grid--02-our-stuff">
                     <div>
-                        <h2 class="h1">Cleaned and Classified Tweets</h2>
+                        <h2 class="h1" style="color:#55acee">Cleaned and Classified Tweets</h2>
                         <div id="classified-tweets"></div>
-
+                        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                            <table class="table table-bordered table-striped mb-0 table-responsive table-custom-border table-hover">      
+                            </table>
+                         </div> 
                     </div>
                 </section>
                 <section id="third-section" class="grid grid--03-our-viz">
@@ -56,27 +55,12 @@
                 </section>
                 <section id="fourth-section" class="grid grid--04-our-analysis">
                     <div>
-                        <h2 class="h1">Our Analysis</h2>
-                        <h3 class="h2">Interesting enough</h3>
+                        <h2 class="h1" style="color:#55acee">Our Analysis</h2>
+                        <h3 class="h2" style="color:#55acee">Interesting enough</h3>
+                        <div id="vis"></div>
                     </div>
                 </section>
-                <section id="fifth-section" class="grid grid--05-most-popular-tweets">
-                    <div>
-                        <h2 class="h1">Conclusion</h2>
-                        <h3 class="h2">Good Luck America!</h3>
-                        <p>
-                        </p>
-                    </div>
-                </section>
-                <section id="fourth-section" class="grid grid--04-our-analysis">
-                    <div>
-                        <h2 class="h1">Word Cloud of Political Words</h2>
-                        <h3 class="h2"></h3>
-                        <p>
-                        </p>
-                        <div id="word-cloud"></div>
-                    </div>
-                </section>
+
             </div>
         </div>
         </div>
@@ -85,9 +69,8 @@
         <footer class="footer">
             <p class="h4 u-text-center">A University of Oregon Data Analytics Boot Camp Project, 2020</p>
             <script src="static/js/get_tweets.js"></script>
-            <script src="static/js/cloud-keep.js"></script>
-            <script src="#"></script>
-            <script src="#"></script>
+            <script src="static/js/cloud.js"></script>
+            <script src="static/js/vis.js"></script>
         </footer>
     </div>
 </body>
