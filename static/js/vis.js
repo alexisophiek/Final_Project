@@ -144,7 +144,7 @@ var layout = {
 	    dtick: .05,
 	    ticklen: 2,
 	    tickwidth: 1,
-	    tickcolor: '#000'
+		tickcolor: '#000'
 	  },
 	  yaxis: {
 	  	range: [-.1, 1.5],
@@ -155,7 +155,8 @@ var layout = {
 	    ticklen: 2,
 	    tickwidth: 1,
 	    tickcolor: '#000'
-	  }
+	  },
+	  fill: "transparent"
 		};
 var data = [trace1]
 Plotly.newPlot('vis', data, layout);
