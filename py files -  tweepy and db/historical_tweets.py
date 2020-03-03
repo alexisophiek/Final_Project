@@ -2,14 +2,15 @@ import tweepy
 from econfig import *
 import datetime as dt
 import json
-import psycopg2
+# import psycopg2
 
-conn = psycopg2.connect(user = "postgres",
-                                  password = "dataisgreat",
-                                  host = "127.0.0.1",
-                                  port = "3306",
-                                  database = "postgres")
-cursor = conn.cursor()
+# conn = psycopg2.connect(user = "postgres",
+#                                   password = "dataisgreat",
+#                                   host = "127.0.0.1",
+#                                   port = "3306",
+#                                   database = "postgres")
+# cursor = conn.cursor()
+
 
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
