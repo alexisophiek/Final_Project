@@ -18,11 +18,16 @@ import os
 stop_words = stopwords.words('english')
 from sqlalchemy import create_engine
 
+'''
+For heroku
+'''
+
 DB = os.environ.get("DBS_URL")
 engine = create_engine(DB)
 
-
-
+'''
+For local
+'''
 
 # engine = create_engine("postgresql://<DB_USER>:<DB_PASSWORD>@localhost:3306/postgres")
 

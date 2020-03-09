@@ -9,7 +9,7 @@ function tableBuilder(inputData) {
     header = headerRow.append("th")
     header.text("Tokenized Tweets")
     inputData.forEach(tweets => {
-        var row = tbody.append('tr');
+        var row = tbody.append('tr').attr('class','table-row');
         Object.entries(tweets).forEach(([key,value]) => {
             var cell = row.append('td');
             cell.text(value);
