@@ -1,6 +1,6 @@
 var dates = []
 	var dateStrings = []
-	var sumEmotions
+	var  sumEmotions,  anger_score, anticipation_score, disgust_score,  fear_score, joy_score, sadness_score, surprise_score, trust_score, negative_score, positive_score, readyData
 	var allSums = []
 	var x = []
 	var y = []
@@ -11,16 +11,20 @@ var sentiments = ['negative', 'positive']
 var emotions = ['anger', 'anticipation', 'disgust', 'fear', 'joy', 'sadness', 'surprise', 'trust']
 var anger, anticipation, disgust, fear, joy, sadness, surprise, trust
 var negative, positive
-/*PREFERRED ROUTE AS OF TODAY*/  
-function emoTweets(){
+var trackedEmo
+var netScore
+
+function buildChart(emo){
+
 	d3.json('/emotions_and_tweets', function(d){
-		/*
-		THIS NOW PROVIDES ONLY THE DICTIONARIES
-		*/
-		var nrcList = ["anger", "anticipation", "disgust", "fear", "joy", "sadness", "surprise", "trust", "negative", "positive"]
-		var readyData = {}
+		var x = []
+		var y = []
 		data = d.data
-		// 
+		console.log(data.length)
+		emo_title = emo + ' Score'
+		emo  = emo +  '_score'
+
+		console.log(emo)
 			for (var i = 0; i < data.length; i++) {
 				sumEmotions = 0
 				if (isNaN(data[i]['emotion_dictionaries']['anger'])) {
@@ -29,19 +33,7 @@ function emoTweets(){
 				else{
 					anger = data[i]['emotion_dictionaries']['anger']
 				}
-				// 
-				// 
-				// console.loganger))
-				// if (true) {}
-				// anticipation = data[i]['emotion_dictionaries']['anticipation']
-				// disgust = data[i]['emotion_dictionaries']['disgust']
-				// fear = data[i]['emotion_dictionaries']['fear']
-				// joy = data[i]['emotion_dictionaries']['joy']
-				// sadness = data[i]['emotion_dictionaries']['sadness']
-				// surprise = data[i]['emotion_dictionaries']['surprise']
-				// trust = data[i]['emotion_dictionaries']['trust']
-				// negative = data[i]['emotion_dictionaries']['negative']
-				// positive = data[i]['emotion_dictionaries']['positive']
+
 				if(isNaN(data[i]['emotion_dictionaries']['anticipation'])) {
 					anticipation = 0
 				}
@@ -107,6 +99,7 @@ function emoTweets(){
 				trust_score = (trust / sumEmotions)
 				negative_score = (negative / sumEmotions)
 				positive_score = (positive / sumEmotions)
+				net_score = positive_score - negative_score
 				readyData = {'anger_score': anger_score, 
 					'anticipation_score': anticipation_score, 
 					'disgust_score': disgust_score,
@@ -116,50 +109,86 @@ function emoTweets(){
 					'surprise_score': surprise_score,
 					'trust_score': trust_score,
 					'negative_score': negative_score,
-					'positive_score':positive_score}
-					console.log(readyData.positive_score)
-				x.push(readyData.positive_score)
-				y.push(readyData.trust_score)
+					'positive_score':positive_score,
+					'net_score': net_score}
+
+				y.push(readyData.net_score)
+				x.push(readyData[emo])
 			}
-var trace1 = {
-  x: x,
-  y: y,
-  mode: 'markers',
-  type: 'scatter'}
-//   marker: {
-// 		size: 30,
-// 		color: 'rgba(217, 217, 217, 0.14)'
-// 		// line: {
-// 		// color: 'rgba(217, 217, 217, 0.14)',
-// 		//	width: 0.5},
-// 		//opacity: 0.8}
-// };
-console.log(trace1)
-var layout = {
-	  xaxis: {
-	  	range: [-.1, 1.5],
-	    autotick: false,
-	    ticks: 'outside',
-	    tick0: 0,
-	    dtick: .05,
-	    ticklen: 2,
-	    tickwidth: 1,
-		tickcolor: '#000'
-	  },
-	  yaxis: {
-	  	range: [-.1, 1.5],
-	    autotick: false,
-	    ticks: 'outside',
-	    tick0: 0,
-	    dtick: .05,
-	    ticklen: 2,
-	    tickwidth: 1,
-	    tickcolor: '#000'
-	  },
-	  fill: "transparent"
-		};
-var data = [trace1]
-Plotly.newPlot('vis', data, layout);
-		})
-	}
-emoTweets()
+				console.log(Math.max(x))
+				console.log(Math.max(y))
+
+				var trace1 = {
+				  x: x,
+				  y: y,
+				  mode: 'markers',
+				  type: 'scatter',
+				  marker: {
+				  	size: 8
+				  }
+				}
+				console.log(emo)
+				// emo = str(emo)
+				var emo_title = ('Tweet ' + emo)
+				console.log(emo_title)
+				var layout = {
+					xaxis: {
+
+						title: emo_title,
+						// title: (emo, " Tweet Score"),
+					  	range: [-.1, 1],
+					    autotick: false,
+					    ticks: 'outside',
+					    tick0: 0,
+					    dtick: .1,
+					    ticklen: 2,
+					    tickwidth: 1,
+						tickcolor: '#000'
+					  },
+					yaxis: {
+						title: 'Net Sentiment Score',
+					  	range: [-1, 1],
+					    autotick: false,
+					    ticks: 'outside',
+					    tick0: 0,
+					    dtick: .5,
+					    ticklen: 2,
+					    tickwidth: 1,
+					    tickcolor: '#000'
+					  },
+				  	fill: "transparent"
+				};
+
+	var data = [trace1]
+
+	Plotly.newPlot('vis', data, layout);
+})}	
+
+
+
+function optionChanged(newSample) {
+
+  	buildChart(newSample)
+}
+
+
+function init(){
+	var selector = d3.select("#selDataset")
+
+
+	d3.json("/tracked", function(data) {
+    	var trackedEmo = data.emotions
+    	trackedEmo.forEach((option) => {
+      		selector
+	        .append("option")
+	        .text(option)
+	        .property("value", option);
+	    });
+	    
+		var firstEmo = trackedEmo[0];
+		buildChart(firstEmo);
+	})
+}
+
+init()
+

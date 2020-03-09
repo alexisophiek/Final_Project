@@ -179,6 +179,27 @@ table, th, td {
     border: 1px solid black;
 }
 
+/* table  tr:nth-child(odd){ 
+    background: #b8d1f3;
+  }
+
+  .table-row td:nth-child(even){
+    word-spacing: 2px;
+    font-weight: 800
+  }*/
+
+/*.row-for-col{
+  column-count: 3;
+}
+.well{
+column-width: 20px;
+}
+
+#vis{
+  column-span: all;
+
+}*/
+
 #first-section {
     background-color: #00abee59;
     margin: 0;

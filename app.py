@@ -8,6 +8,7 @@ import subprocess
 import json
 from sqlalchemy import create_engine
 
+myDict = {} 
 
 ''' 
 FOR HEROKU - UNCOMMENT
@@ -18,7 +19,7 @@ subprocess.call("bin/run_cloud_sql_proxy")
 DB = os.environ.get("DBS_URL")
 engine=create_engine(DB)
 
-# engine = create_engine("postgresql://alexis:datasucks@localhost:3306/postgres")
+# engine = create_engine("postgresql://sam:dataisok@localhost:3306/postgres")
 
 
 
@@ -31,7 +32,10 @@ app = Flask(__name__)
 def home():
 	return render_template('main.html', title='Twit Stack')
 
-
+@app.route('/tracked')
+def tracked():
+    tracked = {'emotions': ["anger", "anticipation", "disgust", "fear", "joy", "sadness", "surprise", "trust"],'sentiment':["negative", "positive"]}
+    return tracked
 # IPYNB NOTEBOOk
 @app.route("/model")
 def model():
@@ -59,13 +63,6 @@ def new_tweets():
     data = pd.read_sql("select * from new_tweets", con=engine)
     return data.to_json()
 
-#NRC DICTionary?
-@app.route("/NRC_dict")
-def get_nrc():
-    emo_dict = pd.read_sql("select * from emotions",con=engine)
-    return emo_dict.to_json()
-
-
 @app.route("/cleaned_tweets")
 def get_cleaned():
     clean_list = []
@@ -85,7 +82,8 @@ def get_words():
 
 @app.route('/emotions_and_tweets')
 def emo_tweets():
-    d = pd.read_sql("select * from emotions LIMIT 50", con=engine).to_json(index=False,orient="table")
+    d = pd.read_sql("select * from emotions LIMIT 300", con=engine).to_json(index=False,orient="table")
+    print(len(d))
     # data = pd.read_sql("select * from emotions where length(emotions.data.emotion_disctionaries) >2 ", con=engine).to_json(index=False,orient="table")
     # data = d[1]
     return d
