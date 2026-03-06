@@ -1,4 +1,3 @@
-from config import pguser, pw
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
@@ -10,9 +9,8 @@ import os
 
 
 #create your database in pgadmin4 as twitter_data
-db_string = f'postgresql://{pguser}:{pw}@localhost:5432/twitter_data'
-# db = os.environ.get('DATABASE_URL')
-# engine = create_engine(db)
+# Set PGUSER and PGPASSWORD environment variables before running
+db_string = os.environ.get('DATABASE_URL', 'postgresql://<DB_USER>:<DB_PASSWORD>@localhost:5432/twitter_data')
 engine = create_engine(db_string)
 print('Loading Engine...')
 

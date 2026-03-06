@@ -1,0 +1,34 @@
+# Credentials and secrets
+credentials.json
+*.pem
+*.key
+*.p12
+*.pfx
+serviceAccountKey.json
+
+# Config files with secrets
+config/
+config.py
+econfig.py
+
+# Environment files
+.env
+.env.*
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
